@@ -16,7 +16,7 @@ a {
 .header .handle_menu {
     width: 100%;
     display: flex;
-font-family: 'Oswald', sans-serif;
+    font-family: 'Oswald', sans-serif;
 }
 
 .header nav {
@@ -27,28 +27,18 @@ font-family: 'Oswald', sans-serif;
 
 }
 
-/* .logo {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    z-index: 999;
-} */
-
 .handle_logo {
     width: 100%;
     font-size: 1.5rem;
     display: flex;
     align-items: center;
     border-bottom: 1px rgb(206, 204, 204) solid;
-    justify-content: space-evenly;
+    justify-content: space-around;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background: #F8F6F4;
+    background: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     z-index: 999;
 
@@ -60,8 +50,12 @@ font-family: 'Oswald', sans-serif;
 
 .handle_logo img {
     width: 150px;
+    height: 100%;
+   
 }
-
+.handle_logo .logo_link{
+    height: 100%;
+}
 .handle_info {
     display: flex;
 }
@@ -125,23 +119,28 @@ font-family: 'Oswald', sans-serif;
     width: 200%;
     height: 40px;
     overflow: hidden;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
 
 .header .search_area p input {
-    width: 90%;
+    width: 88%;
     height: 100%;
     outline: none;
     border: none;
     padding: 0px 20px;
+    background: #F8F6F4;
 }
 
 .header .search_area {
+    width: 30%;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+   
 }
 
 .header .handle_contact {
+    width: 20%;
     display: flex;
     align-items: center;
     font-family: 'Work Sans', sans-serif;
@@ -150,14 +149,19 @@ font-family: 'Oswald', sans-serif;
 
 .header .phone_number {
     font-size: 1.2rem;
-   
+
+}
+
+.header .search_icon {
+    width: 12%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .handle_bestselling {
     width: 250px;
     margin-top: 30px;
-
-
 }
 
 .handle_bestselling .title {
@@ -184,7 +188,7 @@ font-family: 'Oswald', sans-serif;
     width: 100%;
 }
 
-.handle_toggle img {
+.handle_logo .handle_toggle img {
     width: 30px;
     cursor: pointer;
     height: 30px;
@@ -208,21 +212,9 @@ font-family: 'Oswald', sans-serif;
 }
 
 @media screen and (max-width: 600px) {
-    /* .header .handle_categories {
-        display: none;
+    .header .search_area {
+        width: 50%;
     }
-
-    .cate_li {
-        display: none;
-    } */
-
-    /* .phone_number {
-        display: none;
-    } */
-
-    /* .customer_icon {
-        display: none;
-    } */
 
     .handle_slider {
         width: 50px;
@@ -239,5 +231,16 @@ font-family: 'Oswald', sans-serif;
 
     .header .handle_path {
         margin-left: 0px;
+    }
+
+    .handle_logo img {
+        width: 90px;
+       
+    }
+    .header .search_area p{
+        height: 30px;
+    }
+    .header .search_area .search_icon{
+        font-size: 1rem;
     }
 }

@@ -26,6 +26,10 @@ import SignIn from './User/SignIn'
 import Register from './Register/Register'
 import { AppContext } from '../AppContext'
 import { useContext } from 'react'
+import BlogPages1 from './Blog/BlogPages/BlogPages1'
+import BlogPages2 from './Blog/BlogPages/BlogPages2'
+import BlogPages3 from './Blog/BlogPages/BlogPages3'
+import BlogPages4 from './Blog/BlogPages/BlogPages4'
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import Tabmenu from '../Tabmenu/Tabmenu'
 
@@ -38,11 +42,14 @@ export default function Header() {
         <>
             <div className='header'>
                 <div className='handle_logo'>
-                    <Link onClick={() => showsidebar()} to={`/`}><img src={logo}></img></Link>
-                    <div style={{ width: '30%' }} className='search_area'>
-                        <p><input type='text' placeholder='Search Product Here'></input><AiOutlineSearch style={{ width: '12%', display: 'flex', justifyContent: 'center', alignItems: 'center' }} /></p>
+                    {nav &&
+                            <buton onClick={handle_toggle} className='handle_toggle'><img src={toggle}></img></buton>
+                        }
+                    <Link className='logo_link' onClick={() => showsidebar()} to={`/`}><img src={logo}></img></Link>
+                    <div className='search_area'>
+                        <p><input type='text' placeholder='Search Product Here'></input><AiOutlineSearch className='search_icon' /></p>
                     </div>
-                    <div style={{ width: '20%' }} className='handle_contact'>
+                    <div className='handle_contact'>
                         {!nav &&
                             <RiCustomerService2Line className='customer_icon' style={{ fontSize: "2.3rem", marginRight: '15px' }} />
                         }
@@ -63,9 +70,7 @@ export default function Header() {
                 <div className='fake'></div>
                 <nav>
                     <ul className='handle_menu' style={{ listStyle: 'none' }} >
-                        {nav &&
-                            <buton onClick={handle_toggle} className='handle_toggle'><img src={toggle}></img></buton>
-                        }
+                        
                         <div className='handle_categories'>
                             {show &&
                                 <li className='menu_categories' style={{ whiteSpace: 'nowrap', fontSize: '0.8rem' }}><FiMenu className='menu_icon' /> SHOP BY CATEGORIES</li>
@@ -106,6 +111,10 @@ export default function Header() {
                                 <Route path='/cart' element={<LapTopCart />}></Route>
                                 <Route path='/user' element={<SignIn />}></Route>
                                 <Route path='/register' element={<Register />}></Route>
+                                <Route path='/blogs/blog1' element={<BlogPages1/>}></Route>
+                                <Route path='/blogs/blog2' element={<BlogPages2/>}></Route>
+                                <Route path='/blogs/blog3' element={<BlogPages3/>}></Route>
+                                <Route path='/blogs/blog4' element={<BlogPages4/>}></Route>
                             </Routes>
                         </div>
                     </div>
