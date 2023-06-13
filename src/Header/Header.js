@@ -43,8 +43,8 @@ export default function Header() {
             <div className='header'>
                 <div className='handle_logo'>
                     {nav &&
-                            <buton onClick={handle_toggle} className='handle_toggle'><img src={toggle}></img></buton>
-                        }
+                        <buton onClick={handle_toggle} className='handle_toggle'><img src={toggle}></img></buton>
+                    }
                     <Link className='logo_link' onClick={() => showsidebar()} to={`/`}><img src={logo}></img></Link>
                     <div className='search_area'>
                         <p><input type='text' placeholder='Search Product Here'></input><AiOutlineSearch className='search_icon' /></p>
@@ -70,7 +70,7 @@ export default function Header() {
                 <div className='fake'></div>
                 <nav>
                     <ul className='handle_menu' style={{ listStyle: 'none' }} >
-                        
+
                         <div className='handle_categories'>
                             {show &&
                                 <li className='menu_categories' style={{ whiteSpace: 'nowrap', fontSize: '0.8rem' }}><FiMenu className='menu_icon' /> SHOP BY CATEGORIES</li>
@@ -97,6 +97,9 @@ export default function Header() {
                                     <p className='title' style={{ width: '250px' }}>BEST SELLING PRODUCTS</p>
                                     <Card />
                                 </div>
+                                <div style={{marginTop:'30px'}} className='handle_client'>
+                                    <p className='title' style={{ width: '250px' }}>CLIENT SAYS</p>
+                                </div>
                             </ul>
                         }
                         <div className='handle_path'>
@@ -111,10 +114,10 @@ export default function Header() {
                                 <Route path='/cart' element={<LapTopCart />}></Route>
                                 <Route path='/user' element={<SignIn />}></Route>
                                 <Route path='/register' element={<Register />}></Route>
-                                <Route path='/blogs/blog1' element={<BlogPages1/>}></Route>
-                                <Route path='/blogs/blog2' element={<BlogPages2/>}></Route>
-                                <Route path='/blogs/blog3' element={<BlogPages3/>}></Route>
-                                <Route path='/blogs/blog4' element={<BlogPages4/>}></Route>
+                                <Route path='/blogs/blog1' element={<BlogPages1 />}></Route>
+                                <Route path='/blogs/blog2' element={<BlogPages2 />}></Route>
+                                <Route path='/blogs/blog3' element={<BlogPages3 />}></Route>
+                                <Route path='/blogs/blog4' element={<BlogPages4 />}></Route>
                             </Routes>
                         </div>
                     </div>

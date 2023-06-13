@@ -164,7 +164,7 @@ a {
     margin-top: 30px;
 }
 
-.handle_bestselling .title {
+.cate_li .title {
     border: solid 1px black;
     width: 250px;
     height: 30px;
@@ -242,5 +242,13 @@ a {
     }
     .header .search_area .search_icon{
         font-size: 1rem;
+    }
+    .header .handle_contact {
+        width: 5%;
+        margin-right: 10px;
+        float: right;
+        display: flex;
+        align-items: center;
+        font-family: 'Work Sans', sans-serif;
     }
 }
