@@ -1,0 +1,44 @@
+.blog {
+    font-family: 'Noto Sans', sans-serif;
+}
+
+.blog .row {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+
+}
+
+.blog .row .col {
+    width: calc(90% / 2);
+    margin: 20px;
+}
+
+.blog .row .col .card {
+    width: 100%;
+    height: 80%;
+}
+
+.blog .row .col img {
+    width: 100%;
+    height: 100%;
+}
+
+.blog .row .col p {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+
+
+}
+
+@media screen and (max-width: 800px) {
+    .blog .row {
+        display: block;
+    }
+
+    .blog .row .col {
+        width: 100%;
+        margin: 20px 0px;
+    }
+}

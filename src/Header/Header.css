@@ -5,9 +5,8 @@
 }
 
 .container {
-    width: 100%;
-    height: 100vh;
     background: #F8F6F4;
+
 }
 
 a {
@@ -15,21 +14,28 @@ a {
 }
 
 .header .handle_menu {
-    display: flex;
     width: 100%;
+    display: flex;
+font-family: 'Oswald', sans-serif;
 }
 
 .header nav {
     width: 100%;
-    height: 50px;
+    height: 100%;
     padding: 0px 80px;
-    margin-top: 10px
+    margin-top: 10px;
+
 }
 
-.header nav .handle_menu {
-    display: flex;
-    align-items: center;
-}
+/* .logo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+} */
 
 .handle_logo {
     width: 100%;
@@ -37,7 +43,19 @@ a {
     display: flex;
     align-items: center;
     border-bottom: 1px rgb(206, 204, 204) solid;
+    justify-content: space-evenly;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #F8F6F4;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 999;
 
+}
+
+.fake {
+    height: 120px;
 }
 
 .handle_logo img {
@@ -45,16 +63,13 @@ a {
 }
 
 .handle_info {
-    width: 100%;
     display: flex;
-    align-items: center;
-
 }
 
-.handle_info .menu_li {
+.menu_li {
     color: #F9F5F6;
     font-weight: bold;
-    width: 200px;
+    width: 100%;
     height: 30px;
     /* border-right: solid 1px black; */
     /* box-shadow: 2px 0px 0px 0px rgba(0, 0, 0, 0.5); */
@@ -66,31 +81,18 @@ a {
     overflow: hidden;
 }
 
-.handle_info .menu_li:hover {
+.menu_li:hover {
     background: #FF6969;
 }
 
-.handle_info li a {
+.menu_li a {
     color: black;
-    white-space: nowrap;
-    padding: 15px 100px;
+    width: 100%;
+    height: 30px;
     font-size: 0.8rem;
-
-}
-
-.categories {
-    width: 230px;
-    background: #fff;
-    
-}
-
-.categories li {
-    list-style: none;
-    width: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
-    
 }
 
 .menu_categories {
@@ -101,15 +103,141 @@ a {
     justify-content: center;
     align-items: center;
     border-radius: 5px;
-    cursor: pointer;
     background: #212A3E;
     color: #fff;
-    
+
 }
-.menu_icon{
+
+.menu_icon {
     margin-right: 5px;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
 }
-.active{
+
+.active {
     transform: translateY(-100%);
+}
+
+.header .search_area p {
+    background: #DDE6ED;
+    display: flex;
+    border-radius: 100px;
+    align-items: center;
+    width: 200%;
+    height: 40px;
+    overflow: hidden;
+}
+
+.header .search_area p input {
+    width: 90%;
+    height: 100%;
+    outline: none;
+    border: none;
+    padding: 0px 20px;
+}
+
+.header .search_area {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.header .handle_contact {
+    display: flex;
+    align-items: center;
+    font-family: 'Work Sans', sans-serif;
+
+}
+
+.header .phone_number {
+    font-size: 1.2rem;
+   
+}
+
+.handle_bestselling {
+    width: 250px;
+    margin-top: 30px;
+
+
+}
+
+.handle_bestselling .title {
+    border: solid 1px black;
+    width: 250px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    background: #212A3E;
+    color: #fff;
+}
+
+
+.cate_li {
+    width: 250px;
+    margin-top: 10px;
+    position: relative;
+    font-family: 'Oswald', sans-serif;
+}
+
+.p-megamenu.p-megamenu-vertical {
+    width: 100%;
+}
+
+.handle_toggle img {
+    width: 30px;
+    cursor: pointer;
+    height: 30px;
+}
+
+.header .handle_respondmenu {
+    display: flex;
+    width: 100%;
+}
+
+.handle_user {
+    display: flex;
+}
+
+.header .handle_path {
+    overflow: hidden;
+    width: 100%;
+    flex-wrap: wrap;
+    margin-left: 5px;
+    margin-top: 10px;
+}
+
+@media screen and (max-width: 600px) {
+    /* .header .handle_categories {
+        display: none;
+    }
+
+    .cate_li {
+        display: none;
+    } */
+
+    /* .phone_number {
+        display: none;
+    } */
+
+    /* .customer_icon {
+        display: none;
+    } */
+
+    .handle_slider {
+        width: 50px;
+    }
+
+    .cardproduct_img {
+        width: 100%;
+        float: left;
+    }
+
+    .header nav {
+        padding: 0px 10px;
+    }
+
+    .header .handle_path {
+        margin-left: 0px;
+    }
 }

@@ -1,0 +1,78 @@
+.contact {
+    font-family: 'Inter', sans-serif;
+}
+
+.contact .handle_form {
+    margin: 50px 0px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+
+}
+
+.contact .handle_form label {
+    margin-right: 40px;
+    white-space: nowrap;
+    width: 15%;
+}
+
+.contact .handle_form .handle_input {
+    width: 50%;
+    
+}
+.contact .handle_form .handle_input input{
+    width: 100%;
+    border: #DDE6ED 1px solid;
+    padding-left: 10px;
+    height: 50px;
+    outline: none;
+}
+.contact .handle_submit {
+    border: 1px solid green;
+    display: flex;
+    justify-content: center;
+    width: 125px;
+    height: 55px;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.contact .handle_submit button {
+    width: 120px;
+    height: 50px;
+    background: #9BABB8;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    font-size: 1rem;
+
+}
+
+.contact .handle_red {
+    width: 350px;
+    height: 500px;
+    position: absolute;
+    top: calc(50% - 250px);
+    left: calc(50% - 175px);
+    z-index: -1;
+    background: red;
+    animation: spin 1.5s linear infinite;
+}
+
+.contact .handle_rotatecolor {
+    width: 350px;
+    height: 250px;
+
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

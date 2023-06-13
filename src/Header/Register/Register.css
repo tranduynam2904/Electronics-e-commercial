@@ -1,0 +1,127 @@
+.register {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 5vh;
+
+}
+
+.register .handle_register {
+    width: 30%;
+    height: 100%;
+    background: #ECE5C7;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    
+}
+
+.register .handle_input {
+    display: flex;
+    border: #9BABB8 solid 1px;
+    align-items: center;
+    width: 80%;
+    height: 5vh;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    margin: 0 auto;
+    background: #F8F6F4;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.register input {
+    outline: none;
+    border: none;
+    width: 100%;
+    height: 100%;
+    padding-left: 10px;
+    border-left: #9BABB8 solid 1px;
+
+}
+
+.register .register_icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 18%;
+    font-size: 1.2rem;
+}
+
+.register .handle_submit {
+    border: 1px solid green;
+    display: flex;
+    justify-content: center;
+    width: 100px;
+    height: 45px;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.register .handle_submit button {
+    width: 95px;
+    height: 40px;
+    background: #9BABB8;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    font-size: 1rem;
+
+}
+
+.register .handle_red {
+    width: 350px;
+    height: 500px;
+    position: absolute;
+    top: calc(50% - 250px);
+    left: calc(50% - 175px);
+    z-index: -1;
+    background: red;
+    animation: spin 1s linear infinite;
+}
+
+.register .handle_rotatecolor {
+    width: 350px;
+    height: 250px;
+
+}
+
+
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .register .handle_register {
+        width: 100%;
+    }
+
+    .register .handle_submit {
+        border: 1px solid green;
+        display: flex;
+        justify-content: center;
+        width: 90px;
+        height: 35px;
+        align-items: center;
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+    }
+
+    .register .handle_submit button {
+        width: 85px;
+        height: 30px;
+        background: #9BABB8;
+        border: none;
+        cursor: pointer;
+        color: #fff;
+        font-size: 0.8rem;
+
+    }
+}

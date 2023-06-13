@@ -1,0 +1,29 @@
+.handle_scrolltop button {
+    position: fixed;
+    top: 91%;
+    left: 97%;
+    transform: translate(-50%, -50%);
+    padding: 8px 12px;
+    background: black;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (max-width:600px) {
+    .handle_scrolltop button {
+        position: fixed;
+        top: 91%;
+        left: 93%;
+        transform: translate(-50%, -50%);
+        padding: 4px 5px;
+        background: black;
+        color: #fff;
+        cursor: pointer;
+        font-size: 0.8rem;
+
+    }
+}

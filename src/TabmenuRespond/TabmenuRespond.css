@@ -1,0 +1,112 @@
+.tabmenurespond {
+  width: 50%;
+  background: #fff;
+  z-index: 1000;
+  transform: translateX(-110%);
+  transition: 1s;
+  position: fixed;
+  height: 100%;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  overflow: auto;
+
+}
+
+.tabmenurespond.active {
+  transform: translateX(0%);
+}
+
+.tabmenurespond .handle_close {
+  display: flex;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+
+
+}
+
+.tabmenurespond .handle_close button {
+  width: 100%;
+  height: 100%;
+  margin-top: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+  background: #212A3E;
+  color: #fff;
+  transition: 0.2s;
+}
+
+.tabmenurespond .handle_close button:hover {
+  background: #DB005B;
+
+}
+.tabmenurespond .handle_close button:active{
+  background: #98EECC;
+}
+.tabmenurespond nav ul {
+  width: 100%;
+
+}
+
+.tabmenurespond nav ul li {
+  width: 90%;
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: 10px;
+  /* margin-bottom: 10px; */
+}
+
+.tabmenurespond nav ul li a {
+  font-size: 0.7rem;
+}
+
+.tabmenurespond .handle_tabmenu {
+  transition: 1s;
+  transform: translateY(-100%);
+}
+
+.tabmenurespond .handle_tabmenu.active1 {
+  transform: translateY(0%);
+}
+
+.tabmenurespond .handle_bestselling {
+  width: 100%;
+  transition: 1s;
+  transform: translateY(0%);
+}
+
+.tabmenurespond .handle_bestselling.active2 {
+  transform: translateY(-350px);
+}
+
+.tabmenurespond .handle_bestselling p {
+  width: 90%;
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+
+}
+
+.tabmenurespond .handle_bestselling .handle_title {
+  font-size: 0.7rem;
+  padding-left: 0;
+}
+
+.tabmenurespond .handle_bestselling .handle_title p {
+  font-size: 0.7rem;
+}
+
+.tabmenurespond .handle_card .handle_cardbestselling .handle_title .button_addtocart button {
+  padding: 8px 5px;
+  font-size: 0.5rem;
+  white-space: nowrap;
+}
+
+.tabmenurespond .handle_card .handle_cardbestselling {
+  width: 100%;
+
+}
