@@ -5,6 +5,7 @@ import './CardProductHome.css'
 import { AppContext } from "../AppContext"
 import { AiOutlineShoppingCart } from 'react-icons/ai'
 export default function CardProductHome() {
+    
     const { product, addCart } = useContext(AppContext)
     return (
         <div className="handle_cardproduct" style={{ padding: '50px' }}>{product && product.map((item, index) => (

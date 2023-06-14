@@ -51,11 +51,13 @@ a {
 .handle_logo img {
     width: 150px;
     height: 100%;
-   
+
 }
-.handle_logo .logo_link{
+
+.handle_logo .logo_link {
     height: 100%;
 }
+
 .handle_info {
     display: flex;
 }
@@ -73,6 +75,45 @@ a {
     border: solid 1px black;
     border-radius: 5px;
     overflow: hidden;
+    display: inline-block;
+    margin: 0 0.5rem;
+
+
+}
+
+.handle_respondmenu .menu_li.li1 {
+    animation: bounce;
+    animation-duration: 1s;
+}
+
+.handle_respondmenu .menu_li.li2 {
+    animation: bounce;
+    animation-duration: 1s;
+    animation-delay: 0.1s;
+}
+
+.handle_respondmenu .menu_li.li3 {
+    animation: bounce;
+    animation-duration: 1s;
+    animation-delay: 0.2s;
+}
+
+.handle_respondmenu .menu_li.li4 {
+    animation: bounce;
+    animation-duration: 1s;
+    animation-delay: 0.3s;
+}
+
+.handle_respondmenu .menu_li.li5 {
+    animation: bounce;
+    animation-duration: 1s;
+    animation-delay: 0.4s;
+}
+
+.handle_respondmenu .menu_li.li6 {
+    animation: bounce;
+    animation-duration: 1s;
+    animation-delay: 0.5s;
 }
 
 .menu_li:hover {
@@ -99,7 +140,8 @@ a {
     border-radius: 5px;
     background: #212A3E;
     color: #fff;
-
+    animation: backInDown;
+    animation-duration: 1s;
 }
 
 .menu_icon {
@@ -136,7 +178,7 @@ a {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-   
+
 }
 
 .header .handle_contact {
@@ -235,14 +277,17 @@ a {
 
     .handle_logo img {
         width: 90px;
-       
+
     }
-    .header .search_area p{
+
+    .header .search_area p {
         height: 30px;
     }
-    .header .search_area .search_icon{
+
+    .header .search_area .search_icon {
         font-size: 1rem;
     }
+
     .header .handle_contact {
         width: 5%;
         margin-right: 10px;

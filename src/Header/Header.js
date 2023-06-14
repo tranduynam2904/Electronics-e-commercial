@@ -31,8 +31,9 @@ import BlogPages2 from './Blog/BlogPages/BlogPages2'
 import BlogPages3 from './Blog/BlogPages/BlogPages3'
 import BlogPages4 from './Blog/BlogPages/BlogPages4'
 // import 'bootstrap/dist/css/bootstrap.min.css';
+import { SliderClient } from './Client/Client'
 import Tabmenu from '../Tabmenu/Tabmenu'
-
+import 'animate.css';
 export default function Header() {
     const { show, setShow, showsidebar, hidesidebar, nav, setNav, navmenu, setNavmenu } = useContext(AppContext)
     const handle_toggle = () => {
@@ -71,19 +72,31 @@ export default function Header() {
                 <nav>
                     <ul className='handle_menu' style={{ listStyle: 'none' }} >
 
-                        <div className='handle_categories'>
+                        <div  className='handle_categories'>
                             {show &&
                                 <li className='menu_categories' style={{ whiteSpace: 'nowrap', fontSize: '0.8rem' }}><FiMenu className='menu_icon' /> SHOP BY CATEGORIES</li>
                             }
                         </div>
                         {!nav &&
                             <div className='handle_respondmenu' >
-                                <li style={{ margin: '0px 5px' }} className='menu_li'><Link onClick={() => showsidebar()} to={`/home`}>HOME</Link></li>
-                                <li className='menu_li'><Link onClick={() => showsidebar()} to={`/contact`}>CONTACT</Link></li>
-                                <li style={{ margin: '0px 5px' }} className='menu_li'><Link onClick={() => showsidebar()} to={`/delivery`}>DELIVERY</Link></li>
-                                <li className='menu_li'><Link onClick={() => showsidebar()} to={`/special`}>SPECIAL</Link></li>
-                                <li style={{ margin: '0px 5px' }} className='menu_li'><Link onClick={() => showsidebar()} to={`/sitemap`}>SITE MAP</Link></li>
-                                <li className='menu_li'><Link onClick={() => showsidebar()} to={`/blogs`}>BLOGS</Link></li>
+                                <li style={{ margin: '0px 5px' }} className='menu_li li1'>
+                                    <Link onClick={() => showsidebar()} to={`/home`}>HOME</Link>
+                                </li>
+                                <li className='menu_li li2'>
+                                    <Link onClick={() => showsidebar()} to={`/contact`}>CONTACT</Link>
+                                </li>
+                                <li style={{ margin: '0px 5px' }} className='menu_li li3'>
+                                    <Link onClick={() => showsidebar()} to={`/delivery`}>DELIVERY</Link>
+                                </li>
+                                <li className='menu_li li4'>
+                                    <Link onClick={() => showsidebar()} to={`/special`}>SPECIAL</Link>
+                                </li>
+                                <li style={{ margin: '0px 5px' }} className='menu_li li5'>
+                                    <Link onClick={() => showsidebar()} to={`/sitemap`}>SITE MAP</Link>
+                                </li>
+                                <li className='menu_li li6'>
+                                    <Link onClick={() => showsidebar()} to={`/blogs`}>BLOGS</Link>
+                                </li>
                             </div>
                         }
                     </ul>
@@ -97,8 +110,9 @@ export default function Header() {
                                     <p className='title' style={{ width: '250px' }}>BEST SELLING PRODUCTS</p>
                                     <Card />
                                 </div>
-                                <div style={{marginTop:'30px'}} className='handle_client'>
+                                <div  style={{ marginTop: '30px' }} className='handle_clientsays'>
                                     <p className='title' style={{ width: '250px' }}>CLIENT SAYS</p>
+                                    <SliderClient />
                                 </div>
                             </ul>
                         }

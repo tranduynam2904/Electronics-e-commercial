@@ -1,6 +1,8 @@
 .slider{
     width: 100%;
     /* border: 1px red solid; */
+    animation: fadeIn;
+    animation-duration: 1s;
 
 }
 .slider .handle_slider{

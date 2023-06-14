@@ -17,7 +17,7 @@ export default function BlogPages4() {
                 </div>
                 <div className="handle_info">
                     <AiOutlineMenuUnfold className="blog_icon icon1" />
-                    <span>In: </span>
+                    {/* <span>In: </span> */}
                     <Link onClick={() => showsidebar()} to={`/blogs`}><span></span>BACK TO BLOGS</Link>
                     <IoCalendarOutline className="blog_icon" />
                     <span>On: Friday, June 05, 2023</span>

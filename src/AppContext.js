@@ -3,6 +3,7 @@ import axios from "axios"
 import { useState, useEffect } from "react"
 import { useRef } from "react"
 import swal from 'sweetalert';
+import { useInView } from 'react-intersection-observer';
 export const AppContext = createContext({})
 export const AppProvider = ({ children }) => {
     const [product, setProduct] = useState([])
@@ -24,6 +25,8 @@ export const AppProvider = ({ children }) => {
     const [showButton, setShowButton] = useState(true)
     const [navmenu, setNavmenu] = useState(false)
     const [categories, setCategories] = useState(true)
+    const [animate,setAnimate] = useState(false)
+
     const getData = async () => {
         const url = `https://64563f7c2e41ccf16917a1e4.mockapi.io/LaptopList`
         axios
@@ -186,6 +189,12 @@ export const AppProvider = ({ children }) => {
             top: 0,
             behavior: 'smooth'
         })
+    }
+    const AnimateScroll =() =>{
+const [ref,inView] = useInView({
+    threshold: 0.5, // Trigger animation when element is 50% visible
+    triggerOnce: true // Only trigger animation once
+})
     }
     return (
         <AppContext.Provider value={{
