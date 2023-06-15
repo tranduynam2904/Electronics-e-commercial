@@ -5,13 +5,16 @@ import { FaPiggyBank, FaTelegramPlane } from 'react-icons/fa'
 
 import './Footer.css'
 import { Link } from 'react-router-dom'
+import { useContext } from 'react'
+import { AppContext } from '../AppContext'
 export default function Footer() {
+    const {nav} = useContext(AppContext)
     return (
 
-        <div style={{ marginTop: '50px' }} className="footer">
+        <div className={`footer ${nav ? "active_footer" : ''}`}>
             <div className="banner">
                 <div className="row">
-                    <div  className="col">
+                    <div className="col">
                         <p><BiMoney className='icon' />14-DAY MONEY BACK</p>
                     </div>
                     <div className="col">

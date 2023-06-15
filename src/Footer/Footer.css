@@ -1,7 +1,10 @@
 .footer {
     width: 100%;
+    margin-top: 50px;
 }
-
+.footer.active_footer{
+    margin-top: 10px;
+}
 .footer .banner {
     width: 100%;
     height: 15vh;
@@ -110,17 +113,18 @@
     .footer .banner .row {
         width: 100%;
         flex-wrap: wrap;
-       
+
     }
 
     .footer .banner .row .col {
         width: 100%;
         height: 20vh;
-        
+
         display: flex;
-       
+
     }
-    .footer .banner .row .col{
+
+    .footer .banner .row .col {
         width: 250px;
         /* border: 1px blue solid; */
     }

@@ -35,9 +35,34 @@ import { SliderClient } from './Client/Client'
 import Tabmenu from '../Tabmenu/Tabmenu'
 import 'animate.css';
 export default function Header() {
-    const { show, setShow, showsidebar, hidesidebar, nav, setNav, navmenu, setNavmenu } = useContext(AppContext)
+    const { show, setShow, showsidebar, hidesidebar, nav, setNav, navmenu, setNavmenu, product, addCart,
+        categories, setCategories,
+        bestselling, setBestselling,
+    } = useContext(AppContext)
     const handle_toggle = () => {
         setNavmenu(true)
+    }
+    const handle_resize = () => {
+        setNav(!nav)
+        setShow(show)
+        if (window.innerWidth <= 600) {
+            setNav(true)
+            setShow(false)
+        }
+    }
+    useEffect(() => {
+        handle_resize();
+        window.addEventListener('resize', handle_resize)
+        return () => {
+            window.removeEventListener('resize', handle_resize)
+        }
+    }, [])
+
+    const handle_catedropdown = () => {
+        setCategories(!categories)
+    }
+    const handle_bestselling_click = () => {
+        setBestselling(!bestselling)
     }
     return (
         <>
@@ -72,7 +97,7 @@ export default function Header() {
                 <nav>
                     <ul className='handle_menu' style={{ listStyle: 'none' }} >
 
-                        <div  className='handle_categories'>
+                        <div className='handle_categories'>
                             {show &&
                                 <li className='menu_categories' style={{ whiteSpace: 'nowrap', fontSize: '0.8rem' }}><FiMenu className='menu_icon' /> SHOP BY CATEGORIES</li>
                             }
@@ -100,7 +125,7 @@ export default function Header() {
                             </div>
                         }
                     </ul>
-                    <div style={{ display: 'flex' }}>
+                    <div className='handle_cate_li' style={{ display: 'flex' }}>
                         {show &&
                             <ul className='cate_li'>
                                 <div >
@@ -110,7 +135,7 @@ export default function Header() {
                                     <p className='title' style={{ width: '250px' }}>BEST SELLING PRODUCTS</p>
                                     <Card />
                                 </div>
-                                <div  style={{ marginTop: '30px' }} className='handle_clientsays'>
+                                <div style={{ marginTop: '30px' }} className='handle_clientsays'>
                                     <p className='title' style={{ width: '250px' }}>CLIENT SAYS</p>
                                     <SliderClient />
                                 </div>
@@ -135,7 +160,54 @@ export default function Header() {
                             </Routes>
                         </div>
                     </div>
+                    {nav &&
+                        <div className={`handle_containdropdown`}
+                            style={{ display: 'flex', justifyContent: 'center' }}>
+                            <ul className='cate_li'>
+                                <li onClick={handle_catedropdown} className='menu_categories'
+                                    style={{
+                                        whiteSpace: 'nowrap',
+                                        fontSize: '0.8rem',
+                                        cursor: 'pointer',
 
+                                    }}>
+                                    <FiMenu style={{ fontSize: '1.3rem' }} className='menu_icon' />CATEGORIES</li>
+                                <div className='handle_tabmenucategories' style={{ overflow: 'hidden', transition: '1s' }}>
+                                    <div className={`handle_tabmenu ${categories ? "active1" : ""}`}  >
+                                        <Tabmenu />
+                                    </div>
+                                </div>
+                                <div className={`handle_bestselling ${categories ? "active2" : ""}`}>
+                                    <p style={{ cursor: 'pointer' }} onClick={handle_bestselling_click} className='title'><FiMenu style={{ fontSize: '1.3rem' }} className='menu_icon' />BEST SELLING PRODUCTS</p>
+                                    <div style={{ overflow: 'hidden' }}>
+                                        <div style={{ background: '#fff' }} className={`handle_card ${bestselling ? "active3" : ""}`}>
+                                            {product && product.map((item, index) => (
+                                                <div index={index} className="handle_cardbestselling">
+                                                    <div className="img">
+                                                        <Link>
+                                                            <img src="https://www.pixelstalk.net/wp-content/uploads/2016/05/Apple-Laptop-High-Definiton-Computer-Desktop-Background-Images.jpg">
+
+                                                            </img>
+                                                        </Link>
+                                                    </div>
+                                                    <div className="handle_title">
+                                                        <div>
+                                                            <h1 style={{ color: '#ACBCFF' }}>{item.product}</h1>
+                                                            <p>${item.price}.00</p>
+                                                            <div className="button_addtocart">
+                                                                <button style={{}} onClick={() => addCart(item.id)}>ADD TO CART</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                            </ul>
+                        </div>
+                    }
                 </nav >
 
             </div >

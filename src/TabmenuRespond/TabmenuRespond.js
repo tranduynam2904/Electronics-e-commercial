@@ -57,36 +57,9 @@ export default function TabmenuRespond() {
                     <li className='menu_li'><Link to={`/special`}>SPECIAL</Link></li>
                     <li className='menu_li'><Link to={`/sitemap`}>SITE MAP</Link></li>
                     <li className='menu_li'><Link to={`/blogs`}>BLOGS</Link></li>
-                    <li onClick={handle_catedropdown} className='menu_categories' style={{ whiteSpace: 'nowrap', fontSize: '0.8rem', cursor: 'pointer' }}><FiMenu style={{ fontSize: '1.3rem' }} className='menu_icon' />CATEGORIES</li>
+                   
                 </ul>
-                <ul className='cate_li'>
-                    <div className='handle_tabmenucategories' style={{ overflow: 'hidden', transition: '1s' }}>
-                        <div className={`handle_tabmenu ${!categories ? "active1" : ""}`}  >
-                            <Tabmenu />
-                        </div>
-                    </div>
-                    <div className={`handle_bestselling ${categories ? "active2" : ""}`}>
-                        <p className='title'><FiMenu style={{ fontSize: '1.3rem' }} className='menu_icon' />BEST SELLING PRODUCTS</p>
-                        <div style={{ marginTop: '10px', background: '#fff' }} className="handle_card">
-                            {product && product.map((item, index) => (
-                                <div index={index} className="handle_cardbestselling">
-                                    <div className="img">
-                                        <Link><img src="https://www.pixelstalk.net/wp-content/uploads/2016/05/Apple-Laptop-High-Definiton-Computer-Desktop-Background-Images.jpg"></img></Link>
-                                    </div>
-                                    <div className="handle_title">
-                                        <div>
-                                            <h1 style={{ color: '#ACBCFF' }}>{item.product}</h1>
-                                            <p>${item.price}.00</p>
-                                            <div className="button_addtocart">
-                                                <button style={{}} onClick={() => addCart(item.id)}>ADD TO CART</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </ul>
+               
             </nav>
         </div>
     )
