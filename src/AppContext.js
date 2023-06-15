@@ -27,6 +27,7 @@ export const AppProvider = ({ children }) => {
     const [categories, setCategories] = useState(true)
     const [bestselling, setBestselling] = useState(true)
     const [animate, setAnimate] = useState(false)
+    const [client, setClient] = useState(true)
 
     const getData = async () => {
         const url = `https://64563f7c2e41ccf16917a1e4.mockapi.io/LaptopList`
@@ -84,6 +85,9 @@ export const AppProvider = ({ children }) => {
         if (window.innerWidth <= 600) {
             setShow(false)
         }
+    }
+    const showsidebar_dropdown = () =>{
+        setShow(true)
     }
 
     const focusEmail = () => {
@@ -215,6 +219,8 @@ export const AppProvider = ({ children }) => {
             navmenu, setNavmenu,
             categories, setCategories,
             bestselling, setBestselling,
+            client, setClient,
+            showsidebar_dropdown
         }}>
             {children}
         </AppContext.Provider>

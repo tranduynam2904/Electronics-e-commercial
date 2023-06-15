@@ -6,7 +6,7 @@ import { AppContext } from '../../AppContext'
 import { Link } from 'react-router-dom'
 
 export default function SignIn() {
-    
+
     const {
         onChangeEmail,
         onChangePassword,
@@ -17,11 +17,11 @@ export default function SignIn() {
         inputEmailRef,
         focusPassWord,
         inputPassWordRef,
-        setShow } = useContext(AppContext)
+        setShow} = useContext(AppContext)
 
-useEffect(()=>{
-    setShow(false)
-})
+    useEffect(() => {
+        setShow(false)
+    })
     return (
         <form onSubmit={submit}>
             <div className="signin">
@@ -53,7 +53,7 @@ useEffect(()=>{
                         <div style={{ marginTop: '10px', marginRight: '50px', textAlign: 'end' }}>
                             <Link to={`/register`} style={{ textDecoration: 'underline' }}>Register an account</Link>
                         </div>
-                        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px',marginBottom:'20px' }}>
+                        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px', marginBottom: '20px' }}>
                             <div className='handle_submit'>
                                 <button onClick={submit} type='submit'>Submit</button>
                                 <div className='handle_red'>

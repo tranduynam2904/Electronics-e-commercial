@@ -1,15 +1,18 @@
-.handle_blogpage{
+.handle_blogpage {
     padding: 20px 15px;
     font-family: 'Roboto Slab', serif;
 }
+
 .handle_blogpage img {
     width: 100%;
 
 }
-.handle_blogpage h2{
+
+.handle_blogpage h2 {
     margin-bottom: 20px;
 }
-.handle_blogpage .handle_blogpageinfo{
+
+.handle_blogpage .handle_blogpageinfo {
     position: relative;
 }
 
@@ -22,20 +25,32 @@
     position: absolute;
     bottom: 0%;
     color: #fff;
+    white-space: nowrap;
 }
-.handle_blogpage .handle_info span{
+
+.handle_blogpage .handle_info span {
     margin-left: 5px;
 }
-.handle_blogpage .handle_info .blog_icon{
+
+.handle_blogpage .handle_info .blog_icon {
     margin-left: 50px;
     font-size: 1.5rem;
 }
-.handle_blogpage .handle_info .blog_icon.icon1{
+
+.handle_blogpage .handle_info .blog_icon.icon1 {
     margin-left: 20px;
 }
-.handle_blogpage .handle_info a{
+
+.handle_blogpage .handle_info a {
     color: #fff;
 }
-.handle_blogpage .handle_lorem{
+
+.handle_blogpage .handle_lorem {
     margin-top: 20px;
+}
+
+@media screen and(max-width:600px) {
+    .handle_blogpage .handle_info .blog_icon {
+        width: 100px;
+    }
 }

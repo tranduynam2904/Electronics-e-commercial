@@ -15,7 +15,7 @@ import Tabmenu from '../Tabmenu/Tabmenu'
 import Card from '../BestSellingCard/Card'
 export default function TabmenuRespond() {
     const { showsidebar, hidesidebar, nav, setNav, navmenu, setNavmenu, show, setShow, categories, setCategories,
-        product, addCart
+        product, addCart, showsidebar_dropdown
     } = useContext(AppContext)
     const handle_resize = () => {
         setNav(!nav)
@@ -35,13 +35,10 @@ export default function TabmenuRespond() {
     const handle_close = () => {
         setNavmenu(false)
     }
-    const handle_catedropdown = () => {
-        setCategories(!categories)
 
-    }
     return (
         <div className={`tabmenurespond ${navmenu ? "active" : ''}`}>
-            <div style={{display:'flex',justifyContent:'center'}}>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
                 <div className='handle_close'>
                     <button onClick={handle_close}>X</button>
                 </div>
@@ -57,9 +54,9 @@ export default function TabmenuRespond() {
                     <li className='menu_li'><Link to={`/special`}>SPECIAL</Link></li>
                     <li className='menu_li'><Link to={`/sitemap`}>SITE MAP</Link></li>
                     <li className='menu_li'><Link to={`/blogs`}>BLOGS</Link></li>
-                   
+
                 </ul>
-               
+
             </nav>
         </div>
     )

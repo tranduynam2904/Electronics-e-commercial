@@ -24,6 +24,8 @@
 .product_home h2 {
     margin-top: 40px;
     margin-left: 30px;
+    font-family: 'Inter', sans-serif;
+
 }
 
 @media screen and (max-width:600px) {

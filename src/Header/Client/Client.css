@@ -12,7 +12,7 @@
     width: 80px;
     height: 80px;
     border-radius: 50%;
-    border: 1px solid black;
+    border: 2px solid black;
     overflow: hidden;
   
 }
@@ -37,7 +37,5 @@
 .handle_client .client p{
     height: 120px;
     margin-top: 10px;
-    /* border: 1px solid red; */
-    /* display: flex;
-    align-items: center; */
+   
 }

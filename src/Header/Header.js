@@ -30,14 +30,22 @@ import BlogPages1 from './Blog/BlogPages/BlogPages1'
 import BlogPages2 from './Blog/BlogPages/BlogPages2'
 import BlogPages3 from './Blog/BlogPages/BlogPages3'
 import BlogPages4 from './Blog/BlogPages/BlogPages4'
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import { SliderClient } from './Client/Client'
 import Tabmenu from '../Tabmenu/Tabmenu'
 import 'animate.css';
+import ava1 from './avatar1.png'
+import ava2 from './avatar2.png'
+import ava3 from './avatar3.png'
+import ava4 from './avatar4.png'
 export default function Header() {
     const { show, setShow, showsidebar, hidesidebar, nav, setNav, navmenu, setNavmenu, product, addCart,
         categories, setCategories,
         bestselling, setBestselling,
+        client, setClient
     } = useContext(AppContext)
     const handle_toggle = () => {
         setNavmenu(true)
@@ -64,6 +72,18 @@ export default function Header() {
     const handle_bestselling_click = () => {
         setBestselling(!bestselling)
     }
+    const handle_click_clientsays = () => {
+        setClient(!client)
+    }
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        autoplay: true,
+        autoplaySpeed: 3000,
+        slidesToShow: 1,
+        slidesToScroll: 1
+    };
     return (
         <>
             <div className='header'>
@@ -139,6 +159,7 @@ export default function Header() {
                                     <p className='title' style={{ width: '250px' }}>CLIENT SAYS</p>
                                     <SliderClient />
                                 </div>
+
                             </ul>
                         }
                         <div className='handle_path'>
@@ -160,56 +181,95 @@ export default function Header() {
                             </Routes>
                         </div>
                     </div>
-                    {nav &&
-                        <div className={`handle_containdropdown`}
-                            style={{ display: 'flex', justifyContent: 'center' }}>
-                            <ul className='cate_li'>
-                                <li onClick={handle_catedropdown} className='menu_categories'
-                                    style={{
-                                        whiteSpace: 'nowrap',
-                                        fontSize: '0.8rem',
-                                        cursor: 'pointer',
+                    
+                        <div>
+                            {nav &&
+                                <div className={`handle_containdropdown`}
+                                    style={{ display: 'flex', justifyContent: 'center' }}>
+                                    <ul className='cate_li'>
+                                        <li onClick={handle_catedropdown} className='menu_categories'
+                                            style={{
+                                                whiteSpace: 'nowrap',
+                                                fontSize: '0.8rem',
+                                                cursor: 'pointer',
 
-                                    }}>
-                                    <FiMenu style={{ fontSize: '1.3rem' }} className='menu_icon' />CATEGORIES</li>
-                                <div className='handle_tabmenucategories' style={{ overflow: 'hidden', transition: '1s' }}>
-                                    <div className={`handle_tabmenu ${categories ? "active1" : ""}`}  >
-                                        <Tabmenu />
-                                    </div>
-                                </div>
-                                <div className={`handle_bestselling ${categories ? "active2" : ""}`}>
-                                    <p style={{ cursor: 'pointer' }} onClick={handle_bestselling_click} className='title'><FiMenu style={{ fontSize: '1.3rem' }} className='menu_icon' />BEST SELLING PRODUCTS</p>
-                                    <div style={{ overflow: 'hidden' }}>
-                                        <div style={{ background: '#fff' }} className={`handle_card ${bestselling ? "active3" : ""}`}>
-                                            {product && product.map((item, index) => (
-                                                <div index={index} className="handle_cardbestselling">
-                                                    <div className="img">
-                                                        <Link>
-                                                            <img src="https://www.pixelstalk.net/wp-content/uploads/2016/05/Apple-Laptop-High-Definiton-Computer-Desktop-Background-Images.jpg">
+                                            }}>
+                                            <FiMenu style={{ fontSize: '1.3rem' }} className='menu_icon' />CATEGORIES</li>
 
-                                                            </img>
-                                                        </Link>
-                                                    </div>
-                                                    <div className="handle_title">
-                                                        <div>
-                                                            <h1 style={{ color: '#ACBCFF' }}>{item.product}</h1>
-                                                            <p>${item.price}.00</p>
-                                                            <div className="button_addtocart">
-                                                                <button style={{}} onClick={() => addCart(item.id)}>ADD TO CART</button>
+                                        <div className='handle_tabmenucategories' style={{ overflow: 'hidden', transition: '1s' }}>
+                                            <div className={`handle_tabmenu ${categories ? "active1" : ""}`}  >
+                                                <Tabmenu />
+                                            </div>
+                                        </div>
+                                        <div className={`handle_bestselling ${categories ? "active2" : ""}`}>
+                                            <p style={{ cursor: 'pointer' }} onClick={handle_bestselling_click} className='title'><FiMenu style={{ fontSize: '1.3rem' }} className='menu_icon' />BEST SELLING PRODUCTS</p>
+                                            <div style={{ overflow: 'hidden' }}>
+                                                <div style={{ background: '#fff' }} className={`handle_card ${bestselling ? "active3" : ""}`}>
+                                                    {product && product.map((item, index) => (
+                                                        <div index={index} className="handle_cardbestselling">
+                                                            <div className="img">
+                                                                <Link>
+                                                                    <img src="https://www.pixelstalk.net/wp-content/uploads/2016/05/Apple-Laptop-High-Definiton-Computer-Desktop-Background-Images.jpg">
+
+                                                                    </img>
+                                                                </Link>
+                                                            </div>
+                                                            <div className="handle_title">
+                                                                <div>
+                                                                    <h1 style={{ color: '#ACBCFF' }}>{item.product}</h1>
+                                                                    <p>${item.price}.00</p>
+                                                                    <div className="button_addtocart">
+                                                                        <button style={{}} onClick={() => addCart(item.id)}>ADD TO CART</button>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
+
+                                                    ))}
                                                 </div>
-
-                                            ))}
+                                            </div>
                                         </div>
-                                    </div>
+                                        <div style={{ marginTop: '3px' }} className='handle_clientsays '>
+                                            <p onClick={handle_click_clientsays} className='title' style={{ cursor: 'pointer', width: '100%' }}><FiMenu style={{ fontSize: '1.3rem' }} className='menu_icon' />CLIENT SAYS</p>
+                                            <div className={`handle_client ${!client ? "active1" : ''}`}>
+                                                <Slider className='client' {...settings}>
+                                                    <div className='padding_client'>
+                                                        <div className='handle_avatar_respond'>
+                                                            <img sty src={ava1}></img>
+                                                        </div>
+                                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                                                        <Link className='client_name'>HANA CHIRSTOPHER</Link>
+                                                    </div>
+                                                    <div className='padding_client'>
+                                                        <div className='handle_avatar_respond'>
+                                                            <img sty src={ava2}></img>
+                                                        </div>
+                                                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text.</p>
+                                                        <Link className='client_name'>TRINITY IRISH</Link>
+                                                    </div>
+                                                    <div className='padding_client'>
+                                                        <div className='handle_avatar_respond'>
+                                                            <img sty src={ava3}></img>
+                                                        </div>
+                                                        <p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.</p>
+                                                        <Link className='client_name'>JOHN BENSON</Link>
+                                                    </div>
+                                                    <div className='padding_client'>
+                                                        <div className='handle_avatar_respond'>
+                                                            <img sty src={ava4}></img>
+                                                        </div>
+                                                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                                                        <Link className='client_name'>HENRY LAU</Link>
+                                                    </div>
+                                                </Slider>
+                                            </div>
+                                        </div>
+                                    </ul>
                                 </div>
-                            </ul>
+                            }
                         </div>
-                    }
+                   
                 </nav >
-
             </div >
         </>
     )
