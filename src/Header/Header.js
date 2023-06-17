@@ -46,7 +46,7 @@ export default function Header() {
         categories, setCategories,
         bestselling, setBestselling,
         client, setClient,
-        user,setUser,handle_tabmenu
+        user, setUser, handle_tabmenu
     } = useContext(AppContext)
     const handle_toggle = () => {
         setNavmenu(true)
@@ -182,7 +182,7 @@ export default function Header() {
                             </Routes>
                         </div>
                     </div>
-                    {user&&
+                    {user &&
                         <div>
                             {nav &&
                                 <div className={`handle_containdropdown`}
@@ -220,7 +220,7 @@ export default function Header() {
                                                                     <h1 style={{ color: '#ACBCFF' }}>{item.name}</h1>
                                                                     <p>${item.price}</p>
                                                                     <div className="button_addtocart">
-                                                                        <button  onClick={() => addCart(item.id)}>ADD TO CART</button>
+                                                                        <button onClick={() => addCart(item.id)}>ADD TO CART</button>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -269,7 +269,7 @@ export default function Header() {
                                 </div>
                             }
                         </div>
-}
+                    }
                 </nav >
             </div >
         </>

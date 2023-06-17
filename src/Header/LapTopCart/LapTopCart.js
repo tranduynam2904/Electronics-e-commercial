@@ -5,12 +5,13 @@ import { FaTrash } from 'react-icons/fa'
 
 export default function LapTopCart() {
     const { cart, plus, minus, removeItem, show, removeItemLatestProduct,
-        cartLatestProduct ,
+        cartLatestProduct,
         plusLatestProduct,
-        minusLatestProduct,} = useContext(AppContext)
+        minusLatestProduct, totalprice, total,totallatestproduct } = useContext(AppContext)
     return (
         <div className="cart">
             <h1>Cart</h1>
+            <div></div>
             {cart && cart.map((item, index) => {
                 return <div className="handle_info">
                     <div className="img">
@@ -18,6 +19,9 @@ export default function LapTopCart() {
                     </div>
                     <div className="handle_divname">
                         <p className="name">{item.name}</p>
+                    </div>
+                    <div style={{fontWeight:'bold'}} className="handle_originalprice">
+                        <p>${item.originalprice}</p>
                     </div>
                     <div className="handle_qty">
                         <p>{item.qty}</p>
@@ -40,6 +44,9 @@ export default function LapTopCart() {
                     <div className="handle_divname">
                         <p className="name">{item.name}</p>
                     </div>
+                    <div style={{fontWeight:'bold'}} className="handle_originalprice">
+                        <p>${item.originalprice}</p>
+                    </div>
                     <div className="handle_qty">
                         <p>{item.qty}</p>
                         <div className="handle_btn">
@@ -53,7 +60,12 @@ export default function LapTopCart() {
                     <button className='remove' onClick={() => removeItemLatestProduct(item.id)}><FaTrash /></button>
                 </div>
             })}
-            {/* <LapTopCartLatestProduct/> */}
+            <div className="handle_totalprice">
+                <div>
+                    <p>Total Item: {}</p>
+                    <p>Total Price: {total}</p>
+                </div>
+            </div>
         </div>
 
     )

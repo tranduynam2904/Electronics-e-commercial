@@ -12,11 +12,13 @@
     margin-top: 20px;
 
 }
-.handle_info .remove{
+
+.handle_info .remove {
     border: none;
     cursor: pointer;
     background: none;
 }
+
 .handle_info .handle_divname {
     width: 450px;
 
@@ -51,7 +53,7 @@
     height: 100%;
     display: flex;
     align-items: center;
-
+    margin-left: 25px;
 }
 
 .handle_info .name {
