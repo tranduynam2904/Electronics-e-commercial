@@ -1,14 +1,69 @@
-.cart{
+.cart {
     width: 100%;
-    
+
 }
-.handle_btn{
+
+.handle_info {
     display: flex;
-    
-    
+    width: 100%;
+    border: 1px solid #9DB2BF;
+    align-items: center;
+    padding: 25px;
+    margin-top: 20px;
+
 }
-.handle_btn button{
+.handle_info .remove{
+    border: none;
+    cursor: pointer;
+    background: none;
+}
+.handle_info .handle_divname {
+    width: 450px;
+
+}
+
+.handle_info .handle_divprice {
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.handle_info .img {
+    width: 10%;
+    border: 1px solid #9DB2BF;
+    padding: 5px;
+}
+
+.handle_info .img img {
+    width: 100%;
+    height: 100%;
+}
+
+.handle_info button {
     width: 20px;
     height: 20px;
     margin: 0px 3px;
+}
+
+.handle_info .handle_qty {
+    border: 1px solid #9DB2BF;
+    height: 100%;
+    display: flex;
+    align-items: center;
+
+}
+
+.handle_info .name {
+    margin-left: 20px;
+    font-weight: bold;
+}
+
+.handle_info .handle_qty p {
+    margin-left: 5px;
+    margin-right: 15px;
+}
+
+.handle_info .handle_qty .handle_btn button {
+    display: block;
 }

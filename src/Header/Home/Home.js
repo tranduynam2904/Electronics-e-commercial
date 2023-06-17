@@ -11,13 +11,14 @@ export default function Home() {
             <SliderComponent />
             <div className='product_home'>
                 <h2>LATEST PRODUCT</h2>
+                
                 <CardProductHome />
             </div>
-            <div className='image'>
+            {/* <div className='image'>
                 <p style={{ display: 'block', fontSize: '1.8rem' }}
                     className='quality_offer'>Top Quality Offer Summer
                 </p>
-            </div>
+            </div> */}
         </>
     )
 }

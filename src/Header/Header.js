@@ -45,7 +45,8 @@ export default function Header() {
     const { show, setShow, showsidebar, hidesidebar, nav, setNav, navmenu, setNavmenu, product, addCart,
         categories, setCategories,
         bestselling, setBestselling,
-        client, setClient
+        client, setClient,
+        user,setUser,handle_tabmenu
     } = useContext(AppContext)
     const handle_toggle = () => {
         setNavmenu(true)
@@ -109,7 +110,7 @@ export default function Header() {
                             {!nav &&
                                 <Link onClick={() => hidesidebar()} to={`/user`}><HiOutlineUser style={{ cursor: 'pointer', fontSize: '1.8rem', marginRight: '10px' }} /></Link>
                             }
-                            <Link onClick={() => showsidebar()} to={`/cart`}><AiOutlineShoppingCart style={{ cursor: 'pointer', fontSize: '1.8rem' }} /></Link>
+                            <Link onClick={() => handle_tabmenu()} to={`/cart`}><AiOutlineShoppingCart style={{ cursor: 'pointer', fontSize: '1.8rem' }} /></Link>
                         </div>
                     </div>
                 </div>
@@ -181,7 +182,7 @@ export default function Header() {
                             </Routes>
                         </div>
                     </div>
-                    
+                    {user&&
                         <div>
                             {nav &&
                                 <div className={`handle_containdropdown`}
@@ -209,17 +210,17 @@ export default function Header() {
                                                         <div index={index} className="handle_cardbestselling">
                                                             <div className="img">
                                                                 <Link>
-                                                                    <img src="https://www.pixelstalk.net/wp-content/uploads/2016/05/Apple-Laptop-High-Definiton-Computer-Desktop-Background-Images.jpg">
+                                                                    <img src={item.image}>
 
                                                                     </img>
                                                                 </Link>
                                                             </div>
                                                             <div className="handle_title">
                                                                 <div>
-                                                                    <h1 style={{ color: '#ACBCFF' }}>{item.product}</h1>
-                                                                    <p>${item.price}.00</p>
+                                                                    <h1 style={{ color: '#ACBCFF' }}>{item.name}</h1>
+                                                                    <p>${item.price}</p>
                                                                     <div className="button_addtocart">
-                                                                        <button style={{}} onClick={() => addCart(item.id)}>ADD TO CART</button>
+                                                                        <button  onClick={() => addCart(item.id)}>ADD TO CART</button>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -268,7 +269,7 @@ export default function Header() {
                                 </div>
                             }
                         </div>
-                   
+}
                 </nav >
             </div >
         </>

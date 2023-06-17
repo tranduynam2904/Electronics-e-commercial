@@ -6,8 +6,99 @@ import swal from 'sweetalert';
 import { useInView } from 'react-intersection-observer';
 export const AppContext = createContext({})
 export const AppProvider = ({ children }) => {
-    const [product, setProduct] = useState([])
+    const [product, setProduct] = useState([
+        {
+            id1: '1',
+            image: 'https://product.hstatic.net/200000420363/product/laptop-acer-nitro-5-an515-45-r6ev_384a4f04a02f4269afdc5462b3c66708_master.png',
+            name: 'LAPTOP ACER NITRO 5 EAGLE AN515-57-54MV',
+            price: 849.55
+        },
+        {
+            id1: '2',
+            image: 'https://product.hstatic.net/200000420363/product/laptop-asus-tuf-gaming-f15-fx506hc-hn144w-_ed2bb13600b34923810d060c6399bae0_master.jpg',
+            name: 'Laptop ASUS TUF Gaming F15 FX506HC HN144W',
+            price: 807.05
+        },
+        {
+            id1: '3',
+            image: 'https://product.hstatic.net/200000420363/product/laptop-lenovo-300e-chromebook_72c471d0721f4b2dbb2a0178cdda801a_master.jpg',
+            name: 'LAPTOP LENOVO 300E CHROMEBOOK',
+            price: 88.82
+        },
+        {
+            id1: '4',
+            image: 'https://product.hstatic.net/200000420363/product/laptop-fujitsu-lifebook-e5410_026baa2daf474dc4bf1f0965d0b95ed5_master.jpg',
+            name: 'LAPTOP FUJITSU LIFEBOOK E4510',
+            price: 297.07
+        },
+        {
+            id1: '5',
+            image: 'https://product.hstatic.net/200000420363/product/laptop-lenovo-300e-chromebook_72c471d0721f4b2dbb2a0178cdda801a_master.jpg',
+            name: 'Laptop Acer Aspire 3 A315-58-35AG NX.ADDSV.00B',
+            price: 403.31
+        },
+    ]
+    )
+    const [latestProduct, setLatestProduct] = useState([
+        {
+            id: '1',
+            image: 'https://product.hstatic.net/200000420363/product/laptop-asus-gaming-tuf-dash-fx517zc-hn077w-_4b32e6259fe2459cba67735f224ac4fd_master.jpg',
+            name: 'LAPTOP ASUS TUF DASH F15 FX517ZC- HN077W',
+            price: 883.55
+        },
+        {
+            id: '2',
+            image: 'https://product.hstatic.net/200000420363/product/2_b12d2901df664cdaa30c3602da0c0c2f_master.jpg',
+            name: 'Laptop Gaming Asus ROG Strix G16 G614JU N3135W',
+            price: 1516.79
+
+        },
+        {
+            id: '3',
+            image: 'https://product.hstatic.net/200000420363/product/laptop-gaming-gigabyte-g5-ge_cef34f7b9432438e91cac1c4d94430b6_master.png',
+            name: 'Laptop Gaming GIGABYTE G5 ME 51VN263SH',
+            price: 913.30
+
+        },
+        {
+            id: '4',
+            image: 'https://product.hstatic.net/200000420363/product/laptop-asus-expertbook-b1400ceae--bv3186w_d18f2cf629e54c48b33103105e91105e_master.jpg',
+            name: 'Laptop ASUS ExpertBook B1400CEAE-BV3186W',
+            price: 382.07
+        },
+        {
+            id: '5',
+            image: 'https://product.hstatic.net/200000420363/product/laptop-asus-vivobook-15x-oled-a1503za-l1422w-_819613dc5a11434587685e4c52d72cc8_master.jpg',
+            name: 'ASUS VIVOBOOK 15X OLED A1503ZA L1422W',
+            price: 722.06
+        },
+        {
+            id: '6',
+            image: 'https://product.hstatic.net/200000420363/product/1_7787bd0239884d62aee2d701d9ab5ccb_master.jpg',
+            name: 'LAPTOP DELL VOSTRO 15 3520 5M2TT2',
+            price: 700.81
+        },
+        {
+            id: '7',
+            image: 'https://product.hstatic.net/200000420363/product/1_a4602b98289e4c4cb85f0c02a363446c_master.jpg',
+            name: 'Laptop LG Gram Style 2023 14Z90RS G.AH54A5',
+            price: 1657.03
+        },
+        {
+            id: '8',
+            image: 'https://product.hstatic.net/200000420363/product/laptop-dell-inspiron-15-3520-i3u082w11blu_9e3468b8ccb6496593db164061932dab_master.png',
+            name: 'Laptop Dell Inspiron 15 3520 i3U082W11BLU ',
+            price: 522.31
+        },
+        {
+            id: '9',
+            image: 'https://product.hstatic.net/200000420363/product/laptop-hp-envy-x360-13-bf0090tu_580327bebdf040d48e8455b327547258_master.png',
+            name: 'Laptop HP Envy X360 13 bf0090TU 76B13PA',
+            price: 1189.54
+        },
+    ])
     const [cart, setCart] = useState([])
+    const [cartLatestProduct, setCartLatestProduct] = useState([])
     const [hover, setHover] = useState([])
     const [nav, setNav] = useState(true)
     const [show, setShow] = useState(true)
@@ -26,33 +117,40 @@ export const AppProvider = ({ children }) => {
     const [navmenu, setNavmenu] = useState(false)
     const [categories, setCategories] = useState(true)
     const [bestselling, setBestselling] = useState(true)
-    const [animate, setAnimate] = useState(false)
+    const [user, setUser] = useState(false)
     const [client, setClient] = useState(true)
 
-    const getData = async () => {
-        const url = `https://64563f7c2e41ccf16917a1e4.mockapi.io/LaptopList`
-        axios
-            .get(url).then((res) => setProduct(res.data))
-    }
-    console.log(product)
     useEffect(() => {
         if (localStorage.getItem('cart_list')) {
             setCart(JSON.parse(localStorage.getItem('cart_list')));
         }
     }, [])
     useEffect(() => {
-        getData()
+        if (localStorage.getItem('cart_list_latest_product')) {
+            setCartLatestProduct(JSON.parse(localStorage.getItem('cart_list_latest_product')));
+        }
     }, [])
     useEffect(() => {
 
     }, [cart])
+    useEffect(() => {
 
+    }, [cartLatestProduct])
     const addCart = (id) => {
-        let kq = product.find((item) => item.id == id);
-        const index = cart.findIndex((item) => item.id == id);
+        let kq = product.find((item) => item.id1 == id);
+        const index = cart.findIndex((item) => item.id1 == id);
         if (index >= 0) {
-            let newList = cart;
-            newList[index]["qty"]++;
+            const newList = cart.map((item) => {
+                if (item.id1 === id) {
+                    const newQty = item.qty + 1
+                    const newPrice = item.price / item.qty * newQty
+                    return { ...item, qty: newQty, price: newPrice.toFixed(2) }
+                }
+                else {
+                    return item;
+                }
+
+            })
             setCart(newList);
             localStorage.setItem('cart_list', JSON.stringify(newList));
         }
@@ -60,21 +158,111 @@ export const AppProvider = ({ children }) => {
             setCart([...cart, { ...kq, qty: 1 }]);
             localStorage.setItem('cart_list', JSON.stringify([...cart, { ...kq, qty: 1 }]));
         }
+        swal("Completed!", "Add To Cart!", "success");
     }
-    console.log(cart)
+
+    const addCartLatestProduct = (id) => {
+        let kq = latestProduct.find((item) => item.id == id);
+        const index = cartLatestProduct.findIndex((item) => item.id == id);
+        if (index >= 0) {
+            const newList = cartLatestProduct.map((item) => {
+                if (item.id === id) {
+                    const newQty = item.qty + 1
+                    const newPrice = item.price / item.qty * newQty
+                    return { ...item, qty: newQty, price: newPrice.toFixed(2) }
+                }
+                else {
+                    return item;
+                }
+            })
+            setCartLatestProduct(newList);
+            localStorage.setItem('cart_list_latest_product', JSON.stringify(newList));
+        }
+        else {
+            setCartLatestProduct([...cartLatestProduct, { ...kq, qty: 1 }]);
+            localStorage.setItem('cart_list_latest_product', JSON.stringify([...cartLatestProduct, { ...kq, qty: 1 }]));
+        }
+        swal("Completed!", "Add To Cart!", "success");
+
+    }
+
     const plus = (id) => {
-        const kq = cart.map((item) => item.id == id ? { ...item, qty: item.qty + 1 } : item)
+        const kq = cart.map((item) => {
+            if (item.id1 === id) {
+                const newQty = item.qty + 1
+                const newPrice = item.price / item.qty * newQty
+                return { ...item, qty: newQty, price: newPrice.toFixed(2) }
+            }
+            else {
+                return item;
+            }
+        })
         setCart(kq);
         localStorage.setItem('cart_list', JSON.stringify(kq));
     }
     const minus = (id) => {
-        const kq = cart.map((item) => item.id == id ? { ...item, qty: item.qty - 1 } : item)
+        const kq = cart.map((item) => {
+            if (item.id1 === id) {
+                let newQty = item.qty - 1
+                if (newQty == 0) {
+                    newQty = 1;
+                }
+                const newPrice = item.price / item.qty * newQty
+                return { ...item, qty: newQty, price: newPrice.toFixed(2) }
+            }
+            else {
+                return item;
+            }
+
+        })
+
         setCart(kq);
         localStorage.setItem('cart_list', JSON.stringify(kq));
     }
+    const plusLatestProduct = (id) => {
+        const kq = cartLatestProduct.map((item) => {
+            if (item.id === id) {
+                const newQty = item.qty + 1
+                const newPrice = item.price / item.qty * newQty
+                return { ...item, qty: newQty, price: newPrice.toFixed(2) }
+            }
+            else {
+                return item;
+            }
+
+        })
+        setCartLatestProduct(kq);
+        localStorage.setItem('cart_list_latest_product', JSON.stringify(kq));
+    }
+    const minusLatestProduct = (id) => {
+        const kq = cartLatestProduct.map((item) => {
+            if (item.id === id) {
+
+                let newQty = item.qty - 1
+                if (newQty == 0) {
+                    newQty = 1;
+                }
+                const newPrice = item.price / item.qty * newQty
+                return { ...item, qty: newQty == 0 ? 1 : newQty, price: newPrice.toFixed(2) }
+            }
+            else {
+                return item;
+            }
+
+        })
+
+        setCartLatestProduct(kq);
+        localStorage.setItem('cart_list_latest_product', JSON.stringify(kq));
+    }
     const removeItem = (id) => {
-        const kq = cart.filter(item => item.id != id)
-        setCart(kq)
+        const kq1 = cart.filter(item => item.id1 != id)
+        setCart(kq1)
+        localStorage.setItem('cart_list', JSON.stringify(kq1));
+
+    }
+    const removeItemLatestProduct = (id) => {
+        const kq = cartLatestProduct.filter(item => item.id != id)
+        setCartLatestProduct(kq)
         localStorage.setItem('cart_list', JSON.stringify(kq));
     }
     const hidesidebar = () => {
@@ -86,7 +274,7 @@ export const AppProvider = ({ children }) => {
             setShow(false)
         }
     }
-    const showsidebar_dropdown = () =>{
+    const showsidebar_dropdown = () => {
         setShow(true)
     }
 
@@ -201,26 +389,38 @@ export const AppProvider = ({ children }) => {
             triggerOnce: true // Only trigger animation once
         })
     }
+    const handle_tabmenu = () => {
+setUser(true)
+    }
     return (
         <AppContext.Provider value={{
             RegisterSubmit, focusRegisterEmail, focusRegisterPassWord, focusRegisterUserName, inputRegisterEmailRef
             , inputRegisterPassWordRef, inputRegisterUserNameRef, registerEmail, registerPassword, registerUser,
             onChangeRegisterEmail, onChangeRegisterUserName, onChangeRegisterPassword,
 
+            addCartLatestProduct,
+
             onChangeEmail, onChangePassword, email, password, submit, focusPassWord, inputPassWordRef,
             focusEmail, inputEmailRef,
 
             showsidebar, hidesidebar, show, setShow, setNav, nav,
 
-            removeItem, setProduct, product, addCart, cart, plus, minus,
+            removeItem, setProduct, latestProduct, product, addCart, cart, plus, minus,
 
             ScrollToTop, showButton, setShowButton,
+            removeItemLatestProduct,
+            plusLatestProduct,
+            minusLatestProduct,
+            user, setUser,
+            cartLatestProduct, setCartLatestProduct,
 
+            handle_tabmenu,
+            
             navmenu, setNavmenu,
             categories, setCategories,
             bestselling, setBestselling,
             client, setClient,
-            showsidebar_dropdown
+            showsidebar_dropdown,
         }}>
             {children}
         </AppContext.Provider>

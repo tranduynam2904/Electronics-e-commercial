@@ -17,10 +17,11 @@ export default function SignIn() {
         inputEmailRef,
         focusPassWord,
         inputPassWordRef,
-        setShow} = useContext(AppContext)
+        setShow, user, setUser } = useContext(AppContext)
 
     useEffect(() => {
         setShow(false)
+        setUser(false)
     })
     return (
         <form onSubmit={submit}>

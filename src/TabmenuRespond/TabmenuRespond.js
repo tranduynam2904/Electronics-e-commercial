@@ -15,7 +15,7 @@ import Tabmenu from '../Tabmenu/Tabmenu'
 import Card from '../BestSellingCard/Card'
 export default function TabmenuRespond() {
     const { showsidebar, hidesidebar, nav, setNav, navmenu, setNavmenu, show, setShow, categories, setCategories,
-        product, addCart, showsidebar_dropdown
+        product, addCart, showsidebar_dropdown, user, setUser,handle_tabmenu
     } = useContext(AppContext)
     const handle_resize = () => {
         setNav(!nav)
@@ -35,7 +35,7 @@ export default function TabmenuRespond() {
     const handle_close = () => {
         setNavmenu(false)
     }
-
+    
     return (
         <div className={`tabmenurespond ${navmenu ? "active" : ''}`}>
             <div style={{ display: 'flex', justifyContent: 'center' }}>
@@ -48,12 +48,12 @@ export default function TabmenuRespond() {
             </div>
             <nav>
                 <ul>
-                    <li className='menu_li'><Link to={`/home`}>HOME</Link></li>
-                    <li className='menu_li'><Link to={`/contact`}>CONTACT</Link></li>
-                    <li className='menu_li'><Link to={`/delivery`}>DELIVERY</Link></li>
-                    <li className='menu_li'><Link to={`/special`}>SPECIAL</Link></li>
-                    <li className='menu_li'><Link to={`/sitemap`}>SITE MAP</Link></li>
-                    <li className='menu_li'><Link to={`/blogs`}>BLOGS</Link></li>
+                    <li onClick={handle_tabmenu} className='menu_li'><Link to={`/home`}>HOME</Link></li>
+                    <li onClick={handle_tabmenu} className='menu_li'><Link to={`/contact`}>CONTACT</Link></li>
+                    <li onClick={handle_tabmenu} className='menu_li'><Link to={`/delivery`}>DELIVERY</Link></li>
+                    <li onClick={handle_tabmenu} className='menu_li'><Link to={`/special`}>SPECIAL</Link></li>
+                    <li onClick={handle_tabmenu} className='menu_li'><Link to={`/sitemap`}>SITE MAP</Link></li>
+                    <li onClick={handle_tabmenu} className='menu_li'><Link to={`/blogs`}>BLOGS</Link></li>
 
                 </ul>
 

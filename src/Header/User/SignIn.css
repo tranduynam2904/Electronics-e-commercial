@@ -2,8 +2,8 @@
         width: 100%;
         display: flex;
         justify-content: center;
-        margin-top: 5vh;
-
+        margin-top: 2vh;
+        margin-bottom: 2vh;
     }
 
     .signin .handle_signin {
