@@ -14,16 +14,28 @@ export default function Footer() {
         <div className={`footer ${nav ? "active_footer" : ''}`}>
             <div className="banner">
                 <div className="row">
-                    <div className="col">
+                    <div 
+                    data-aos="flip-left" 
+                    data-aos-delay="100"
+                    className="col">
                         <p><BiMoney className='icon' />14-DAY MONEY BACK</p>
                     </div>
-                    <div className="col">
+                    <div 
+                    data-aos="flip-left" 
+                    data-aos-delay="200"
+                    className="col">
                         <p><BsFillAirplaneFill className='icon' />FAST FREE SHIPMENT</p>
                     </div>
-                    <div className="col">
+                    <div 
+                    data-aos="flip-left" 
+                    data-aos-delay="300"
+                    className="col">
                         <p><FaPiggyBank className='icon' />MONEY BACK GUARENTEE</p>
                     </div>
-                    <div className="col">
+                    <div 
+                    data-aos="flip-left" 
+                    data-aos-delay="400"
+                    className="col">
                         <p><AiFillLike className='icon' />SAVE 20% WHEN YOU</p>
                     </div>
                 </div>

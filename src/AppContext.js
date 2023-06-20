@@ -1,9 +1,13 @@
 import { createContext } from "react"
 import axios from "axios"
 import { useState, useEffect } from "react"
+import { useCallback } from "react"
 import { useRef } from "react"
 import swal from 'sweetalert';
+import { useMemo } from "react"
+import { isEqual } from 'lodash';
 import { useInView } from 'react-intersection-observer';
+import { orderBy } from "lodash";
 export const AppContext = createContext({})
 export const AppProvider = ({ children }) => {
     const [product, setProduct] = useState([
@@ -48,14 +52,14 @@ export const AppProvider = ({ children }) => {
         {
             id: '1',
             image: 'https://product.hstatic.net/200000420363/product/laptop-asus-gaming-tuf-dash-fx517zc-hn077w-_4b32e6259fe2459cba67735f224ac4fd_master.jpg',
-            name: 'LAPTOP ASUS TUF DASH F15 FX517ZC- HN077W',
+            name: 'ASUS TUF DASH F15 FX517ZC- HN077W',
             originalprice: 883.55,
             price: 883.55
         },
         {
             id: '2',
             image: 'https://product.hstatic.net/200000420363/product/2_b12d2901df664cdaa30c3602da0c0c2f_master.jpg',
-            name: 'Laptop Gaming Asus ROG Strix G16 G614JU N3135W',
+            name: 'Gaming Asus ROG Strix G16 G614JU N3135W',
             originalprice: 1516.79,
             price: 1516.79
 
@@ -63,7 +67,7 @@ export const AppProvider = ({ children }) => {
         {
             id: '3',
             image: 'https://product.hstatic.net/200000420363/product/laptop-gaming-gigabyte-g5-ge_cef34f7b9432438e91cac1c4d94430b6_master.png',
-            name: 'Laptop Gaming GIGABYTE G5 ME 51VN263SH',
+            name: 'Gaming GIGABYTE G5 ME 51VN263SH',
             originalprice: 913.30,
             price: 913.30
 
@@ -71,7 +75,7 @@ export const AppProvider = ({ children }) => {
         {
             id: '4',
             image: 'https://product.hstatic.net/200000420363/product/laptop-asus-expertbook-b1400ceae--bv3186w_d18f2cf629e54c48b33103105e91105e_master.jpg',
-            name: 'Laptop ASUS ExpertBook B1400CEAE-BV3186W',
+            name: 'ASUS ExpertBook B1400CEAE-BV3186W',
             originalprice: 382.07,
             price: 382.07
         },
@@ -85,28 +89,28 @@ export const AppProvider = ({ children }) => {
         {
             id: '6',
             image: 'https://product.hstatic.net/200000420363/product/1_7787bd0239884d62aee2d701d9ab5ccb_master.jpg',
-            name: 'LAPTOP DELL VOSTRO 15 3520 5M2TT2',
+            name: 'DELL VOSTRO 15 3520 5M2TT2',
             originalprice: 700.81,
             price: 700.81
         },
         {
             id: '7',
             image: 'https://product.hstatic.net/200000420363/product/1_a4602b98289e4c4cb85f0c02a363446c_master.jpg',
-            name: 'Laptop LG Gram Style 2023 14Z90RS G.AH54A5',
+            name: 'LG Gram Style 2023 14Z90RS G.AH54A5',
             originalprice: 1657.03,
             price: 1657.03
         },
         {
             id: '8',
             image: 'https://product.hstatic.net/200000420363/product/laptop-dell-inspiron-15-3520-i3u082w11blu_9e3468b8ccb6496593db164061932dab_master.png',
-            name: 'Laptop Dell Inspiron 15 3520 i3U082W11BLU ',
+            name: 'Dell Inspiron 15 3520 i3U082W11BLU ',
             originalprice: 522.31,
             price: 522.31
         },
         {
             id: '9',
             image: 'https://product.hstatic.net/200000420363/product/laptop-hp-envy-x360-13-bf0090tu_580327bebdf040d48e8455b327547258_master.png',
-            name: 'Laptop HP Envy X360 13 bf0090TU 76B13PA',
+            name: 'HP Envy X360 13 bf0090TU 76B13PA',
             originalprice: 1189.54,
             price: 1189.54,
         },
@@ -150,6 +154,33 @@ export const AppProvider = ({ children }) => {
     useEffect(() => {
 
     }, [cartLatestProduct])
+
+    // const sortedProductsAsc = () => {
+    //     setLatestProduct(orderBy(latestProduct, 'price', 'asc'))
+    // }
+    // const sortedProductsDesc = () => {
+    //     setLatestProduct(orderBy(latestProduct, 'price', 'desc'))
+    // }
+    // const sortedProductsAsc = () => {
+    //     const sortedProducts = [...latestProduct].sort((a, b) => a.price - b.price);
+    //     setLatestProduct(sortedProducts);
+    // };
+
+    // const sortedProductsDesc = () => {
+    //     const sortedProducts = [...latestProduct].sort((a, b) => b.price - a.price);
+    //     setLatestProduct(sortedProducts);
+    // };
+    const [sortOrder, setSortOrder] = useState([]);
+    const handleSortOrderChange = (event) => {
+        setSortOrder(event.target.value);
+        const sortedProducts = sortOrder === 'asc' ?
+            [...latestProduct].sort((a, b) => b.price - a.price) : sortOrder === 'desc' ?
+                [...latestProduct].sort((a, b) => a.price - b.price) : sortOrder === 'AZ' ?
+                    [...latestProduct].sort((a, b) => b.name.localeCompare(a.name)) : sortOrder === 'ZA' ?
+                        [...latestProduct].sort((a, b) => a.name.localeCompare(b.name)) : latestProduct;
+        setLatestProduct(sortedProducts);
+    };
+
     const addCart = (id) => {
         let kq = product.find((item) => item.id1 == id);
         const index = cart.findIndex((item) => item.id1 == id);
@@ -177,279 +208,298 @@ export const AppProvider = ({ children }) => {
         swal("Completed!", "Add To Cart!", "success");
 
     }
-    // const total = cart.reduce((total, item) => {
-    //     return Number(total) + Number(item.price);
-    // }, "")
-    // const totallatestproduct = cartLatestProduct.reduce((total, item) => {
-    //     return Number(total) + Number(item.price);
-    // }, "")
-    const total = cart.reduce((total, item) => {
-        return Number(parseFloat(total) + Number(parseFloat(item.price)));
-    }, 0).toFixed(2)
 
-    
-        const addCartLatestProduct = (id) => {
-            let kq = latestProduct.find((item) => item.id == id);
-            const index = cartLatestProduct.findIndex((item) => item.id == id);
-            if (index >= 0) {
-                const newList = cartLatestProduct.map((item) => {
-                    if (item.id === id) {
-                        const newQty = item.qty + 1
-                        const newPrice = item.price / item.qty * newQty
-                        return { ...item, qty: newQty, price: newPrice.toFixed(2) }
-                    }
-                    else {
-                        return item;
-                    }
-                })
-                setCartLatestProduct(newList);
-                localStorage.setItem('cart_list_latest_product', JSON.stringify(newList));
+    const addCartLatestProduct = (id) => {
+        let kq = latestProduct.find((item) => item.id == id);
+        const index = cartLatestProduct.findIndex((item) => item.id == id);
+        if (index >= 0) {
+            const newList = cartLatestProduct.map((item) => {
+                if (item.id === id) {
+                    const newQty = item.qty + 1
+                    const newPrice = item.price / item.qty * newQty
+                    return { ...item, qty: newQty, price: newPrice.toFixed(2) }
+                }
+                else {
+                    return item;
+                }
+            })
+            setCartLatestProduct(newList);
+            localStorage.setItem('cart_list_latest_product', JSON.stringify(newList));
+        }
+        else {
+            setCartLatestProduct([...cartLatestProduct, { ...kq, qty: 1 }]);
+            localStorage.setItem('cart_list_latest_product', JSON.stringify([...cartLatestProduct, { ...kq, qty: 1 }]));
+        }
+        swal("Completed!", "Add To Cart!", "success");
+    }
+    const total = cart.reduce((total, item) => {
+        return (parseFloat(total) + parseFloat(item.price)).toFixed(2);
+    }, 0)
+    const totallatest = cartLatestProduct.reduce((total, item) => {
+        return (parseFloat(total) + parseFloat(item.price)).toFixed(2);
+    }, 0)
+    const totalall = (parseFloat(total) + parseFloat(totallatest)).toFixed(2);
+    // Number(parseFloat(total)) + Number(parseFloat(totallatest))
+
+
+    const totalitem = cart.reduce((itemtotal, item) => {
+        return itemtotal + 1
+    }, 0)
+    const totalitemlatest = cartLatestProduct.reduce((itemtotallatest, item) => {
+        return itemtotallatest + 1
+    }, 0)
+
+    const totalitemAll = totalitem + totalitemlatest
+    const plus = (id) => {
+        const kq = cart.map((item) => {
+            if (item.id1 === id) {
+                const newQty = item.qty + 1
+                const newPrice = item.price / item.qty * newQty
+                return { ...item, qty: newQty, price: newPrice.toFixed(2) }
             }
             else {
-                setCartLatestProduct([...cartLatestProduct, { ...kq, qty: 1 }]);
-
-                localStorage.setItem('cart_list_latest_product', JSON.stringify([...cartLatestProduct, { ...kq, qty: 1 }]));
+                return item;
             }
-            swal("Completed!", "Add To Cart!", "success");
-        }
+        })
+        setCart(kq);
+        localStorage.setItem('cart_list', JSON.stringify(kq));
+    }
+    const minus = (id) => {
+        const kq = cart.map((item) => {
+            if (item.id1 === id) {
+                let newQty = item.qty - 1
+                if (newQty == 0) {
+                    newQty = 1;
+                }
+                const newPrice = item.price / item.qty * newQty
+                return { ...item, qty: newQty, price: newPrice.toFixed(2) }
+            }
+            else {
+                return item;
+            }
+        })
+        setCart(kq);
+        localStorage.setItem('cart_list', JSON.stringify(kq));
+    }
+    const plusLatestProduct = (id) => {
+        const kq = cartLatestProduct.map((item) => {
+            if (item.id === id) {
+                const newQty = item.qty + 1
+                const newPrice = item.price / item.qty * newQty
+                return { ...item, qty: newQty, price: newPrice.toFixed(2) }
+            }
+            else {
+                return item;
+            }
 
-        const plus = (id) => {
-            const kq = cart.map((item) => {
-                if (item.id1 === id) {
-                    const newQty = item.qty + 1
-                    const newPrice = item.price / item.qty * newQty
-                    return { ...item, qty: newQty, price: newPrice.toFixed(2) }
+        })
+        setCartLatestProduct(kq);
+        localStorage.setItem('cart_list_latest_product', JSON.stringify(kq));
+    }
+    const minusLatestProduct = (id) => {
+        const kq = cartLatestProduct.map((item) => {
+            if (item.id === id) {
+                let newQty = item.qty - 1
+                if (newQty == 0) {
+                    newQty = 1;
                 }
-                else {
-                    return item;
-                }
-            })
-            setCart(kq);
-            localStorage.setItem('cart_list', JSON.stringify(kq));
-        }
-        const minus = (id) => {
-            const kq = cart.map((item) => {
-                if (item.id1 === id) {
-                    let newQty = item.qty - 1
-                    if (newQty == 0) {
-                        newQty = 1;
-                    }
-                    const newPrice = item.price / item.qty * newQty
-                    return { ...item, qty: newQty, price: newPrice.toFixed(2) }
-                }
-                else {
-                    return item;
-                }
-            })
-            setCart(kq);
-            localStorage.setItem('cart_list', JSON.stringify(kq));
-        }
-        const plusLatestProduct = (id) => {
-            const kq = cartLatestProduct.map((item) => {
-                if (item.id === id) {
-                    const newQty = item.qty + 1
-                    const newPrice = item.price / item.qty * newQty
-                    return { ...item, qty: newQty, price: newPrice.toFixed(2) }
-                }
-                else {
-                    return item;
-                }
+                const newPrice = item.price / item.qty * newQty
+                return { ...item, qty: newQty == 0 ? 1 : newQty, price: newPrice.toFixed(2) }
+            }
+            else {
+                return item;
+            }
 
-            })
-            setCartLatestProduct(kq);
-            localStorage.setItem('cart_list_latest_product', JSON.stringify(kq));
-        }
-        const minusLatestProduct = (id) => {
-            const kq = cartLatestProduct.map((item) => {
-                if (item.id === id) {
-                    let newQty = item.qty - 1
-                    if (newQty == 0) {
-                        newQty = 1;
-                    }
-                    const newPrice = item.price / item.qty * newQty
-                    return { ...item, qty: newQty == 0 ? 1 : newQty, price: newPrice.toFixed(2) }
-                }
-                else {
-                    return item;
-                }
+        })
 
-            })
+        setCartLatestProduct(kq);
+        localStorage.setItem('cart_list_latest_product', JSON.stringify(kq));
+    }
+    const removeItem = (id) => {
+        const kq1 = cart.filter(item => item.id1 != id)
+        setCart(kq1)
+        localStorage.setItem('cart_list', JSON.stringify(kq1));
 
-            setCartLatestProduct(kq);
-            localStorage.setItem('cart_list_latest_product', JSON.stringify(kq));
-        }
-        const removeItem = (id) => {
-            const kq1 = cart.filter(item => item.id1 != id)
-            setCart(kq1)
-            localStorage.setItem('cart_list', JSON.stringify(kq1));
-
-        }
-        const removeItemLatestProduct = (id) => {
-            const kq = cartLatestProduct.filter(item => item.id != id)
-            setCartLatestProduct(kq)
-            localStorage.setItem('cart_list', JSON.stringify(kq));
-        }
-        const hidesidebar = () => {
+    }
+    const removeItemLatestProduct = (id) => {
+        const kq = cartLatestProduct.filter(item => item.id != id)
+        setCartLatestProduct(kq)
+        localStorage.setItem('cart_list', JSON.stringify(kq));
+    }
+    const hidesidebar = () => {
+        setShow(false)
+    }
+    const showsidebar = () => {
+        setShow(true)
+        if (window.innerWidth <= 600) {
             setShow(false)
         }
-        const showsidebar = () => {
-            setShow(true)
-            if (window.innerWidth <= 600) {
-                setShow(false)
-            }
-        }
-        const showsidebar_dropdown = () => {
-            setShow(true)
-        }
-
-        const focusEmail = () => {
-            inputEmailRef.current.focus();
-        }
-        const focusPassWord = () => {
-            inputPassWordRef.current.focus();
-        }
-        const focusRegisterEmail = () => {
-            inputRegisterEmailRef.current.focus();
-        }
-        const focusRegisterPassWord = () => {
-            inputRegisterPassWordRef.current.focus();
-        }
-        const focusRegisterUserName = () => {
-            inputRegisterUserNameRef.current.focus();
-        }
-        const onChangeRegisterUserName = (e) => {
-            setRegisterUser(e.target.value)
-        }
-        const onChangeRegisterEmail = (e) => {
-            setRegisterEmail(e.target.value)
-        }
-        const onChangeRegisterPassword = (e) => {
-            setRegisterPassword(e.target.value)
-        }
-        const onChangeEmail = (e) => {
-            setEmail(e.target.value)
-
-        }
-        const onChangePassword = (e) => {
-            setPassword(e.target.value)
-        }
-
-
-        const validateEmail = () => {
-            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return regex.test(registerEmail);
-        }
-        const validateUserName = (registerUser) => {
-            if (registerUser < 3) {
-                return alert('User Must Have At Least 3 Letter')
-            }
-            // Check Special Letter
-            const regex = /^[a-zA-Z0-9._-]+$/;
-            if (!regex.test(registerUser)) {
-                return '';
-            }
-
-            // Check Dulicate
-            const existingUsernames = ['user1', 'user2', 'user3']; // List UserName That Existed
-            if (existingUsernames.includes(registerUser)) {
-                return 'User Name Existed';
-            }
-            //  If All The Request is done, return Null to point out the poperly UserName 
-            return swal({
-                title: "Register Successfully!",
-                icon: "success",
-                button: "OK!",
-            });
-        }
-
-        const RegisterSubmit = (e) => {
-            e.preventDefault();
-            const JsonEmail = JSON.stringify(registerEmail)
-            const JsonPassword = JSON.stringify(registerPassword)
-            localStorage.setItem('inputRegisterUser', registerUser)
-            localStorage.setItem('inputRegisterEmail', JsonEmail)
-            localStorage.setItem('inputRegisterPassword', JsonPassword)
-            if (validateEmail(registerEmail)) {
-                setRegisterEmail('')
-            }
-
-            else {
-                alert('Please Register Right Email Address')
-            }
-            setRegisterUser(validateUserName)
-            setRegisterUser('')
-            setRegisterPassword('')
-
-        }
-        const submit = (e) => {
-            e.preventDefault();
-            const SignInEmail = JSON.stringify(email)
-            const SignInPassword = JSON.stringify(password)
-            if (email == '') {
-                return alert('Please Write Your Email Register')
-            }
-            if (password == '') {
-                return alert('Please Write Password Of Your Email Register')
-            }
-            if (SignInEmail == localStorage.getItem('inputRegisterEmail', registerEmail) &&
-                SignInPassword == localStorage.getItem('inputRegisterPassword', registerPassword)) {
-                return swal("Sign In Successful!", "Welcome!" + " " + localStorage.getItem('inputRegisterUser', registerUser), "success");
-            }
-            else {
-                return alert('Wrong Email or Password')
-            }
-
-        }
-
-        const ScrollToTop = () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            })
-        }
-        // const AnimateScroll = () => {
-        //     const [ref, inView] = useInView({
-        //         threshold: 0.5, // Trigger animation when element is 50% visible
-        //         triggerOnce: true // Only trigger animation once
-        //     })
-        // }
-        const handle_tabmenu = () => {
-            setUser(true)
-        }
-        return (
-            <AppContext.Provider value={{
-                RegisterSubmit, focusRegisterEmail, focusRegisterPassWord, focusRegisterUserName, inputRegisterEmailRef
-                , inputRegisterPassWordRef, inputRegisterUserNameRef, registerEmail, registerPassword, registerUser,
-                onChangeRegisterEmail, onChangeRegisterUserName, onChangeRegisterPassword,
-
-                addCartLatestProduct,
-
-                onChangeEmail, onChangePassword, email, password, submit, focusPassWord, inputPassWordRef,
-                focusEmail, inputEmailRef,
-
-                showsidebar, hidesidebar, show, setShow, setNav, nav,
-
-                removeItem, setProduct, latestProduct, product, addCart, cart, plus, minus,
-
-                ScrollToTop, showButton, setShowButton,
-                removeItemLatestProduct,
-                plusLatestProduct,
-                minusLatestProduct,
-                user, setUser,
-                cartLatestProduct, setCartLatestProduct,
-
-                handle_tabmenu,
-                totalprice, setTotalPrice,
-                navmenu, setNavmenu,
-                categories, setCategories,
-                bestselling, setBestselling,
-                client, setClient,
-                showsidebar_dropdown,
-                total,
-                // totallatestproduct,
-            }}>
-                {children}
-            </AppContext.Provider>
-        )
     }
+    const showsidebar_dropdown = () => {
+        setShow(true)
+    }
+
+    const focusEmail = () => {
+        inputEmailRef.current.focus();
+    }
+    const focusPassWord = () => {
+        inputPassWordRef.current.focus();
+    }
+    const focusRegisterEmail = () => {
+        inputRegisterEmailRef.current.focus();
+    }
+    const focusRegisterPassWord = () => {
+        inputRegisterPassWordRef.current.focus();
+    }
+    const focusRegisterUserName = () => {
+        inputRegisterUserNameRef.current.focus();
+    }
+    const onChangeRegisterUserName = (e) => {
+        setRegisterUser(e.target.value)
+    }
+    const onChangeRegisterEmail = (e) => {
+        setRegisterEmail(e.target.value)
+    }
+    const onChangeRegisterPassword = (e) => {
+        setRegisterPassword(e.target.value)
+    }
+    const onChangeEmail = (e) => {
+        setEmail(e.target.value)
+
+    }
+    const onChangePassword = (e) => {
+        setPassword(e.target.value)
+    }
+
+
+    const validateEmail = () => {
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return regex.test(registerEmail);
+    }
+    const validateUserName = (registerUser) => {
+        if (registerUser < 3) {
+            return alert('User Must Have At Least 3 Letter')
+        }
+        // Check Special Letter
+        const regex = /^[a-zA-Z0-9._-]+$/;
+        if (!regex.test(registerUser)) {
+            return '';
+        }
+
+        // Check Dulicate
+        const existingUsernames = ['user1', 'user2', 'user3']; // List UserName That Existed
+        if (existingUsernames.includes(registerUser)) {
+            return 'User Name Existed';
+        }
+        //  If All The Request is done, return Null to point out the poperly UserName 
+        return swal({
+            title: "Register Successfully!",
+            icon: "success",
+            button: "OK!",
+        });
+    }
+
+    const RegisterSubmit = (e) => {
+        e.preventDefault();
+        const JsonEmail = JSON.stringify(registerEmail)
+        const JsonPassword = JSON.stringify(registerPassword)
+        localStorage.setItem('inputRegisterUser', registerUser)
+        localStorage.setItem('inputRegisterEmail', JsonEmail)
+        localStorage.setItem('inputRegisterPassword', JsonPassword)
+        if (validateEmail(registerEmail)) {
+            setRegisterEmail('')
+        }
+
+        else {
+            alert('Please Register Right Email Address')
+        }
+        setRegisterUser(validateUserName)
+        setRegisterUser('')
+        setRegisterPassword('')
+
+    }
+    const submit = (e) => {
+        e.preventDefault();
+        const SignInEmail = JSON.stringify(email)
+        const SignInPassword = JSON.stringify(password)
+        if (email == '') {
+            return alert('Please Write Your Email Register')
+        }
+        if (password == '') {
+            return alert('Please Write Password Of Your Email Register')
+        }
+        if (SignInEmail == localStorage.getItem('inputRegisterEmail', registerEmail) &&
+            SignInPassword == localStorage.getItem('inputRegisterPassword', registerPassword)) {
+            return swal("Sign In Successful!", "Welcome!" + " " + localStorage.getItem('inputRegisterUser', registerUser), "success");
+        }
+        else {
+            return alert('Wrong Email or Password')
+        }
+
+    }
+
+    const ScrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        })
+    }
+    // const AnimateScroll = () => {
+    //     const [ref, inView] = useInView({
+    //         threshold: 0.5, // Trigger animation when element is 50% visible
+    //         triggerOnce: true // Only trigger animation once
+    //     })
+    // }
+    const handle_tabmenu = () => {
+        setShow(true)
+    }
+    const handle_tabmenu_show = () => {
+        setUser(true)
+    }
+    return (
+        <AppContext.Provider value={{
+            RegisterSubmit, focusRegisterEmail, focusRegisterPassWord, focusRegisterUserName, inputRegisterEmailRef
+            , inputRegisterPassWordRef, inputRegisterUserNameRef, registerEmail, registerPassword, registerUser,
+            onChangeRegisterEmail, onChangeRegisterUserName, onChangeRegisterPassword,
+
+            addCartLatestProduct,
+
+            onChangeEmail, onChangePassword, email, password, submit, focusPassWord, inputPassWordRef,
+            focusEmail, inputEmailRef,
+
+            showsidebar, hidesidebar, show, setShow, setNav, nav,
+
+            removeItem, setProduct, latestProduct, product, addCart, cart, plus, minus,
+
+            ScrollToTop, showButton, setShowButton,
+            removeItemLatestProduct,
+            plusLatestProduct,
+            minusLatestProduct,
+            user, setUser,
+            cartLatestProduct, setCartLatestProduct,
+
+            handle_tabmenu_show,
+
+            handle_tabmenu,
+            totalprice, setTotalPrice,
+            navmenu, setNavmenu,
+            categories, setCategories,
+            bestselling, setBestselling,
+            client, setClient,
+            showsidebar_dropdown,
+            total,
+            totallatest,
+            totalall,
+            totalitem,
+            totalitemAll,
+            sortOrder,
+            // sortedProductsAsc,
+            // sortedProductsDesc
+            // handleSortPriceHighToLow
+            handleSortOrderChange,
+        }}>
+            {children}
+        </AppContext.Provider>
+    )
+}
 

@@ -8,7 +8,9 @@ export default function Card() {
     return (
         <div style={{ marginTop: '10px', background: '#fff' }} className="handle_card">
             {product && product.map((item, index) => (
-                <div index={index} className="handle_cardbestselling">
+                <div data-aos="fade-right"
+                    data-aos-duration="500"
+                    data-aos-easing="ease-in-sine" index={index} className="handle_cardbestselling">
                     <div className="img">
                         <Link><img src={item.image}></img></Link>
                     </div>

@@ -6,12 +6,26 @@ import Slider from 'react-slick';
 import { SliderComponent } from '../../Slider/Slider';
 import { useEffect } from 'react';
 export default function Home() {
+    const { sortedProductsAsc,
+        sortedProductsDesc,
+        handleSortOrderChange,
+        sortOrder
+
+    } = useContext(AppContext)
     return (
         <>
             <SliderComponent />
             <div className='product_home'>
                 <h2>LATEST PRODUCT</h2>
-                
+                <div className='handle_sort'>
+                    <p>Sort by: </p>
+                    <select value={sortOrder} onChange={handleSortOrderChange}>
+                        <option value="asc">Price: Low to High</option>
+                        <option value="desc">Price: High to Low</option>
+                        <option value="AZ">Name: A to Z</option>
+                        <option value="ZA">Name: Z to A</option>
+                    </select>
+                </div>
                 <CardProductHome />
             </div>
             {/* <div className='image'>

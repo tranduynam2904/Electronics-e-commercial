@@ -41,12 +41,15 @@ import ava1 from './avatar1.png'
 import ava2 from './avatar2.png'
 import ava3 from './avatar3.png'
 import ava4 from './avatar4.png'
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 export default function Header() {
     const { show, setShow, showsidebar, hidesidebar, nav, setNav, navmenu, setNavmenu, product, addCart,
         categories, setCategories,
         bestselling, setBestselling,
         client, setClient,
-        user, setUser, handle_tabmenu
+        user, setUser, handle_tabmenu, handle_tabmenu_show
     } = useContext(AppContext)
     const handle_toggle = () => {
         setNavmenu(true)
@@ -66,7 +69,10 @@ export default function Header() {
             window.removeEventListener('resize', handle_resize)
         }
     }, [])
-
+    useEffect(() => {
+        AOS.init();
+        AOS.refresh();
+    }, []);
     const handle_catedropdown = () => {
         setCategories(!categories)
     }
@@ -110,7 +116,12 @@ export default function Header() {
                             {!nav &&
                                 <Link onClick={() => hidesidebar()} to={`/user`}><HiOutlineUser style={{ cursor: 'pointer', fontSize: '1.8rem', marginRight: '10px' }} /></Link>
                             }
-                            <Link onClick={() => handle_tabmenu()} to={`/cart`}><AiOutlineShoppingCart style={{ cursor: 'pointer', fontSize: '1.8rem' }} /></Link>
+                            {!nav &&
+                                <Link onClick={() => handle_tabmenu()} to={`/cart`}><AiOutlineShoppingCart style={{ cursor: 'pointer', fontSize: '1.8rem' }} /></Link>
+                            }
+                            {nav &&
+                                <Link onClick={() => handle_tabmenu_show()} to={`/cart`}><AiOutlineShoppingCart style={{ cursor: 'pointer', fontSize: '1.8rem' }} /></Link>
+                            }
                         </div>
                     </div>
                 </div>

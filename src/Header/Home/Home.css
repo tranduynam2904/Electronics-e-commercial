@@ -34,3 +34,10 @@
         margin-left: 0px;
     }
 }
+.handle_sort{
+    display: flex;
+    justify-content: flex-end;
+}
+.handle_sort select{
+    margin-left: 5px;
+}

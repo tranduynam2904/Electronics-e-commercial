@@ -8,7 +8,7 @@ export default function CardProductHome() {
     const { product, addCartLatestProduct,latestProduct } = useContext(AppContext)
     return (
         <div className="handle_cardproduct" style={{ padding: '50px' }}>{latestProduct && latestProduct.map((item, index) => (
-            <div className="cardproduct_img">
+            <div data-aos="fade-down" data-aos-duration="1000" className="cardproduct_img">
                 <div className="handle_img">
                     <Link><img src={item.image}></img></Link>
                 </div>
