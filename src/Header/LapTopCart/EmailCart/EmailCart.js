@@ -1,9 +1,15 @@
-import './Contact.css'
 import React, { useContext, useRef } from 'react';
 import emailjs from '@emailjs/browser';
-import { AppContext } from '../../AppContext';
-export default function Contact() {
-    const {SubmitContact}= useContext(AppContext)
+import '../../Contact/Contact.css'
+import { AppContext } from '../../../AppContext';
+// import '../../LapTopCart/LapTopCart.css'
+export default function EmailCart() {
+    const {
+        // mailOptions, 
+        cart,
+        productList,
+        SubmitProcess
+    } = useContext(AppContext)
     const form = useRef()
     const sendEmail = (e) => {
         e.preventDefault();
@@ -16,9 +22,9 @@ export default function Contact() {
         e.target.reset()
     };
     return (
-        <div style={{ width:'100%', marginLeft: '50px', marginTop: '50px' }} className="contact">
+        <div style={{ width: '100%', marginLeft: '50px', marginTop: '50px' }} className="contact">
             <h1>
-                Contact Us
+                Shipping Infomation
             </h1>
             <form style={{ width: '100%' }} ref={form} onSubmit={sendEmail}>
                 <div className='handle_form'>
@@ -34,18 +40,30 @@ export default function Contact() {
                     </div>
                 </div>
                 <div className='handle_form'>
-                    <label for="input-enquiry">Enquiry</label>
+                    <label for="input-email">Your Address</label>
+                    <div className='handle_input'>
+                        <input type="text" name='user_address' placeholder="Your Address" id="input-email"></input>
+                    </div>
+                </div>
+                <div>{cart && cart.price}</div>
+                <div className='handle_form'>
+                    <label for="input-enquiry">Your Order</label>
+                    <div className='handle_input'>
+                        <textarea name='customer_order' value={productList} style={{ outline: 'none' }}></textarea>
+                    </div>
+                </div>
+                <div className='handle_form'>
+                    <label for="input-enquiry">Note</label>
                     <div className='handle_input'>
                         <textarea name='message' style={{ outline: 'none' }}></textarea>
                     </div>
                 </div>
                 <div className='handle_submit'>
-                    <button onClick={SubmitContact} type='submit'>Submit</button>
+                    <button onClick={SubmitProcess} type='submit'>Submit</button>
                     <div className='handle_red'>
                         <p className='handle_rotatecolor' style={{ background: 'blue' }}></p>
                     </div>
                 </div>
-
             </form>
         </div>
     )

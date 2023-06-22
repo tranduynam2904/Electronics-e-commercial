@@ -16,6 +16,7 @@
     align-items: center;
     padding: 25px;
     margin-bottom: 20px;
+
 }
 
 .handle_totalprice {
@@ -35,18 +36,27 @@
 }
 
 .handle_process button {
-    background: #fed700;
     border: none;
     width: 100%;
     height: 40px;
-    cursor: pointer;
+    overflow: hidden;
+}
+
+.handle_process button a {
+    background: #fed700;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     transition: 0.5s;
+    cursor: pointer;
     font-weight: bold;
 }
 
-.handle_process button:hover {
-    background: #333e48;
+.handle_process button a:hover {
     color: #fff;
+    background: #333e48;
 }
 
 .handle_info .remove {
@@ -56,8 +66,10 @@
 }
 
 .handle_info .handle_divname {
-    width: 450px;
-
+    width: 75%;
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
 }
 
 .handle_info .handle_divprice {
@@ -68,14 +80,17 @@
 }
 
 .handle_info .img {
-    width: 10%;
+    width: 100px;
     border: 1px solid #9DB2BF;
     padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .handle_info .img img {
-    width: 100%;
-    height: 100%;
+    width: 80px;
+
 }
 
 .handle_info button {
@@ -93,10 +108,11 @@
 
 .handle_info .handle_qty {
     border: 1px solid #9DB2BF;
-    height: 100%;
+    /* height: 100%; */
     display: flex;
-    align-items: center;
     margin-left: 25px;
+    width: 50px;
+    height: 50px;
 }
 
 .handle_info .name {
@@ -104,12 +120,129 @@
     font-weight: bold;
 }
 
-.handle_info .handle_qty p {
-    margin-left: 5px;
-    margin-right: 15px;
+.handle_allinfo {
+    width: 75%;
+    margin: 20px 20px 0px 20px;
+}
+
+.handle_totalprice {
+    width: 25%;
+}
+
+.handle_info .handle_qty .item_qty {
+    width: 50%;
+    /* margin-left: 5px;
+    margin-right: 15px; */
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.handle_info .handle_qty .handle_btn {
+    width: 50%;
+    height: 50%;
 }
 
 .handle_info .handle_qty .handle_btn button {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
 
+.handle_flexinfoall {
+    display: flex;
+    width: 100%;
+
+}
+
+.handle_flexinfo {
+    width: 50%;
+    display: flex;
+    align-items: center;
+}
+
+.handle_pricetotal {
+    display: flex;
+    align-items: center;
+}
+
+@media screen and (max-width: 600px) {
+    .handle_totalboard {
+        display: block;
+    }
+
+    .handle_info {
+        width: 100%;
+        padding: 10px;
+        align-items: normal;
+        display: flex;
+    }
+
+    .handle_info .handle_qty {
+        margin-left: 0px;
+    }
+
+    .handle_flexinfo {
+        width: 100%;
+        flex-wrap: wrap;
+        margin: 10px 0px;
+        display: block;
+    }
+
+    .handle_flexinfo .col {
+        width: calc(100% / 4);
+    }
+
+    .handle_info img {
+        width: 100px;
+    }
+
+    .handle_allinfo {
+        width: 100%;
+        margin: 0;
+
+    }
+
+    .handle_info .handle_divname {
+        width: 100%;
+        font-size: 0.8rem;
+    }
+
+    .handle_info .handle_divname .name {
+        margin-left: 0px;
+    }
+
+    .handle_originalprice {
+        margin: 10px 0px;
+        display: flex;
+        align-items: center;
+        font-size: 0.9rem;
+    }
+
+    .handle_qty {
+        margin: 0;
+    }
+
+    .handle_divprice {
+        width: 25%;
+        display: flex;
+        align-items: center;
+        font-size: 0.9rem;
+    }
+
+    .handle_flexinfoall {
+        display: block;
+        margin-left: 20px;
+    }
+
+    .handle_pricetotal {
+        float: left;
+    }
+
+    .handle_totalprice {
+        width: 100%;
+    }
 }

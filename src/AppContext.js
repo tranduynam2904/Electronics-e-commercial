@@ -138,6 +138,7 @@ export const AppProvider = ({ children }) => {
     const [user, setUser] = useState(false)
     const [client, setClient] = useState(true)
     const [totalprice, setTotalPrice] = useState("")
+
     useEffect(() => {
         if (localStorage.getItem('cart_list')) {
             setCart(JSON.parse(localStorage.getItem('cart_list')));
@@ -154,22 +155,17 @@ export const AppProvider = ({ children }) => {
     useEffect(() => {
 
     }, [cartLatestProduct])
-
-    // const sortedProductsAsc = () => {
-    //     setLatestProduct(orderBy(latestProduct, 'price', 'asc'))
-    // }
-    // const sortedProductsDesc = () => {
-    //     setLatestProduct(orderBy(latestProduct, 'price', 'desc'))
-    // }
-    // const sortedProductsAsc = () => {
-    //     const sortedProducts = [...latestProduct].sort((a, b) => a.price - b.price);
-    //     setLatestProduct(sortedProducts);
-    // };
-
-    // const sortedProductsDesc = () => {
-    //     const sortedProducts = [...latestProduct].sort((a, b) => b.price - a.price);
-    //     setLatestProduct(sortedProducts);
-    // };
+    
+    let productList = ''
+    for (let i = 0; i < cart.length; i++) {
+        const item = cart[i];
+        productList += `(Name: ${item.name}\n - Price: $${item.originalprice}\n - Quantity: ${item.qty}\n - Total: $${item.price}), \n`;
+    }
+    for (let i = 0; i < cartLatestProduct.length; i++) {
+        const item = cartLatestProduct[i];
+        productList += `(Name: ${item.name}\n - Price: $${item.originalprice}\n - Quantity: ${item.qty}\n - Total: $${item.price}), \n`;
+    }
+   
     const [sortOrder, setSortOrder] = useState([]);
     const handleSortOrderChange = (event) => {
         setSortOrder(event.target.value);
@@ -195,10 +191,8 @@ export const AppProvider = ({ children }) => {
                     return item;
                 }
             })
-
             setCart(newList);
             localStorage.setItem('cart_list', JSON.stringify(newList));
-
         }
         else {
             setCart([...cart, { ...kq, qty: 1 }]);
@@ -230,6 +224,7 @@ export const AppProvider = ({ children }) => {
             setCartLatestProduct([...cartLatestProduct, { ...kq, qty: 1 }]);
             localStorage.setItem('cart_list_latest_product', JSON.stringify([...cartLatestProduct, { ...kq, qty: 1 }]));
         }
+
         swal("Completed!", "Add To Cart!", "success");
     }
     const total = cart.reduce((total, item) => {
@@ -239,17 +234,14 @@ export const AppProvider = ({ children }) => {
         return (parseFloat(total) + parseFloat(item.price)).toFixed(2);
     }, 0)
     const totalall = (parseFloat(total) + parseFloat(totallatest)).toFixed(2);
-    // Number(parseFloat(total)) + Number(parseFloat(totallatest))
-
-
-    const totalitem = cart.reduce((itemtotal, item) => {
-        return itemtotal + 1
+    const totalItem = cart.reduce((total, item) => {
+        return (parseFloat(total) + parseFloat(item.qty));
     }, 0)
-    const totalitemlatest = cartLatestProduct.reduce((itemtotallatest, item) => {
-        return itemtotallatest + 1
+    const totalItemLatest = cartLatestProduct.reduce((total, item) => {
+        return (parseFloat(total) + parseFloat(item.qty));
     }, 0)
+    const totalItemAll = (parseFloat(totalItem) + parseFloat(totalItemLatest));
 
-    const totalitemAll = totalitem + totalitemlatest
     const plus = (id) => {
         const kq = cart.map((item) => {
             if (item.id1 === id) {
@@ -263,6 +255,7 @@ export const AppProvider = ({ children }) => {
         })
         setCart(kq);
         localStorage.setItem('cart_list', JSON.stringify(kq));
+
     }
     const minus = (id) => {
         const kq = cart.map((item) => {
@@ -311,7 +304,6 @@ export const AppProvider = ({ children }) => {
             }
 
         })
-
         setCartLatestProduct(kq);
         localStorage.setItem('cart_list_latest_product', JSON.stringify(kq));
     }
@@ -444,17 +436,19 @@ export const AppProvider = ({ children }) => {
             behavior: 'smooth'
         })
     }
-    // const AnimateScroll = () => {
-    //     const [ref, inView] = useInView({
-    //         threshold: 0.5, // Trigger animation when element is 50% visible
-    //         triggerOnce: true // Only trigger animation once
-    //     })
-    // }
+   
     const handle_tabmenu = () => {
         setShow(true)
     }
     const handle_tabmenu_show = () => {
         setUser(true)
+    }
+    // const [SubmitContactName,setSubmitContactName] = useState('')
+    const SubmitContact = ()=>{
+        swal("Thank You For Your Infomation!", "We will contact to you soon!", "success");
+    }
+    const SubmitProcess = ()=>{
+        swal("Thank You For Your Purchase!", "We will ship to your address soon!", "success");
     }
     return (
         <AppContext.Provider value={{
@@ -490,16 +484,21 @@ export const AppProvider = ({ children }) => {
             total,
             totallatest,
             totalall,
-            totalitem,
-            totalitemAll,
+            totalItemAll,
+            // totalitemAll,
             sortOrder,
             // sortedProductsAsc,
             // sortedProductsDesc
             // handleSortPriceHighToLow
             handleSortOrderChange,
-        }}>
+            // mailOptions
+            productList,
+            SubmitContact,
+            SubmitProcess
+        }
+        }>
             {children}
-        </AppContext.Provider>
+        </AppContext.Provider >
     )
 }
 

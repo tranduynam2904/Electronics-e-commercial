@@ -28,16 +28,27 @@
 
 }
 
+.handle_cardproduct {
+    padding: 50px;
+}
+
 @media screen and (max-width:600px) {
     .product_home h2 {
         text-align: center;
         margin-left: 0px;
     }
+
+    .handle_cardproduct {
+        padding: 20px;
+    }
 }
-.handle_sort{
+
+.handle_sort {
     display: flex;
     justify-content: flex-end;
+    margin-top: 25px;
 }
-.handle_sort select{
+
+.handle_sort select {
     margin-left: 5px;
 }

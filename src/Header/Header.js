@@ -43,13 +43,14 @@ import ava3 from './avatar3.png'
 import ava4 from './avatar4.png'
 import AOS from "aos";
 import "aos/dist/aos.css";
+import EmailCart from './LapTopCart/EmailCart/EmailCart'
 
 export default function Header() {
     const { show, setShow, showsidebar, hidesidebar, nav, setNav, navmenu, setNavmenu, product, addCart,
         categories, setCategories,
         bestselling, setBestselling,
         client, setClient,
-        user, setUser, handle_tabmenu, handle_tabmenu_show
+        user, setUser, handle_tabmenu, handle_tabmenu_show, cart, cartLatestProduct
     } = useContext(AppContext)
     const handle_toggle = () => {
         setNavmenu(true)
@@ -91,6 +92,7 @@ export default function Header() {
         slidesToShow: 1,
         slidesToScroll: 1
     };
+
     return (
         <>
             <div className='header'>
@@ -104,7 +106,7 @@ export default function Header() {
                     </div>
                     <div className='handle_contact'>
                         {!nav &&
-                            <RiCustomerService2Line className='customer_icon' style={{ fontSize: "2.3rem", marginRight: '15px' }} />
+                            <RiCustomerService2Line className='customer_icon' style={{ fontSize: "3rem", marginRight: '15px' }} />
                         }
                         {!nav &&
                             <div style={{ marginRight: '50px' }} className='phone_number'>
@@ -117,12 +119,14 @@ export default function Header() {
                                 <Link onClick={() => hidesidebar()} to={`/user`}><HiOutlineUser style={{ cursor: 'pointer', fontSize: '1.8rem', marginRight: '10px' }} /></Link>
                             }
                             {!nav &&
-                                <Link onClick={() => handle_tabmenu()} to={`/cart`}><AiOutlineShoppingCart style={{ cursor: 'pointer', fontSize: '1.8rem' }} /></Link>
+                                <Link onClick={() => showsidebar()} to={`/cart`}><AiOutlineShoppingCart style={{ cursor: 'pointer', fontSize: '1.8rem' }} /></Link>
                             }
                             {nav &&
-                                <Link onClick={() => handle_tabmenu_show()} to={`/cart`}><AiOutlineShoppingCart style={{ cursor: 'pointer', fontSize: '1.8rem' }} /></Link>
+                                <Link to={`/cart`}><AiOutlineShoppingCart style={{ cursor: 'pointer', fontSize: '1.8rem' }} /></Link>
                             }
+                            <span>{cart.length + cartLatestProduct.length}</span>
                         </div>
+
                     </div>
                 </div>
                 <div className='fake'></div>
@@ -190,6 +194,7 @@ export default function Header() {
                                 <Route path='/blogs/blog2' element={<BlogPages2 />}></Route>
                                 <Route path='/blogs/blog3' element={<BlogPages3 />}></Route>
                                 <Route path='/blogs/blog4' element={<BlogPages4 />}></Route>
+                                <Route path='/cart/user-cart' element={<EmailCart />}></Route>
                             </Routes>
                         </div>
                     </div>
