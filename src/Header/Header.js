@@ -244,13 +244,12 @@ export default function Header() {
                                                             <div className="img">
                                                                 <Link to={`/product/${item.id1}`}>
                                                                     <img src={item.image}>
-
                                                                     </img>
                                                                 </Link>
                                                             </div>
                                                             <div className="handle_title">
                                                                 <div>
-                                                                    <h1 style={{ color: '#ACBCFF' }}>{item.name}</h1>
+                                                                    <h1 style={{ color: '#0364BE' }}>{item.name}</h1>
                                                                     <p>${item.price}</p>
                                                                     <div className="button_addtocart">
                                                                         <button onClick={() => addCart(item.id)}>ADD TO CART</button>
