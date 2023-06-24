@@ -6,22 +6,16 @@ import Delivery from './Delivery/Delivery'
 import Sitemap from './Sitemap/Sitemap'
 import './Header.css'
 import logo from './logoGear.png'
-import { useEffect, useState } from 'react'
-import Special from './Special/Special'
+import { useEffect } from 'react'
+import AboutUs from './AboutUs/AboutUs'
 import { FiMenu } from 'react-icons/fi'
-import { useRef } from 'react'
 import React from 'react'
-import { AiOutlineLaptop, AiOutlineSearch, AiOutlineShoppingCart } from 'react-icons/ai'
+import { AiOutlineSearch, AiOutlineShoppingCart } from 'react-icons/ai'
 import { RiCustomerService2Line } from 'react-icons/ri'
 import { HiOutlineUser } from 'react-icons/hi'
-import { BiMouseAlt } from 'react-icons/bi'
-import { BsKeyboard } from 'react-icons/bs'
-import { IoIosArrowForward } from 'react-icons/io'
-import axios from 'axios'
 import Card from '../BestSellingCard/Card'
 import LapTopCart from './LapTopCart/LapTopCart'
 import toggle from './toggle.png'
-import xmark from './Xmark.png'
 import SignIn from './User/SignIn'
 import Register from './Register/Register'
 import { AppContext } from '../AppContext'
@@ -33,7 +27,6 @@ import BlogPages4 from './Blog/BlogPages/BlogPages4'
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-// import 'bootstrap/dist/css/bootstrap.min.css';
 import { SliderClient } from './Client/Client'
 import Tabmenu from '../Tabmenu/Tabmenu'
 import 'animate.css';
@@ -174,7 +167,7 @@ export default function Header() {
                                     <Link onClick={() => showsidebar()} to={`/delivery`}>DELIVERY</Link>
                                 </li>
                                 <li className='menu_li li4'>
-                                    <Link onClick={() => showsidebar()} to={`/special`}>SPECIAL</Link>
+                                    <Link onClick={() => showsidebar()} to={`/special`}>ABOUT US</Link>
                                 </li>
                                 <li style={{ margin: '0px 5px' }} className='menu_li li5'>
                                     <Link onClick={() => showsidebar()} to={`/sitemap`}>SITE MAP</Link>
@@ -208,7 +201,7 @@ export default function Header() {
                                 <Route path='/home' element={<Home />} ></Route>
                                 <Route path='/contact' element={<Contact />}></Route>
                                 <Route path='/delivery' element={<Delivery />}></Route>
-                                <Route path='/special' element={<Special />}></Route>
+                                <Route path='/special' element={<AboutUs />}></Route>
                                 <Route path='/sitemap' element={<Sitemap />}></Route>
                                 <Route path='/blogs' element={<Blogs />}></Route>
                                 <Route path='/cart' element={<LapTopCart />}></Route>

@@ -1,0 +1,20 @@
+.Sitemap {
+    line-height: 22px;
+    padding: 20px;
+    font-family: 'Roboto Slab', serif;
+}
+
+.Sitemap h1 {
+    text-align: center;
+}
+
+.Sitemap div {
+    margin-top: 10px;
+}
+
+.Sitemap p {
+    margin: 5px 0px;
+}
+.Sitemap ul{
+    margin-left: 40px;
+}
