@@ -67,7 +67,6 @@ export default function LapTopCart() {
                                         </div>
                                         <button className='remove' onClick={() => removeItem(item.id1)}><FaTrash /></button>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -83,7 +82,7 @@ export default function LapTopCart() {
                                 </div>
                                 <div className="handle_flexinfo">
                                     <div style={{ fontWeight: 'bold' }} className="handle_originalprice">
-                                        <p>${item.originalprice}</p>
+                                        <p style={{ display: 'flex', alignItems: 'center' }}>${item.originalprice}</p>
                                     </div>
                                     <div className="handle_pricetotal">
                                         <div className="handle_qty">
@@ -96,11 +95,12 @@ export default function LapTopCart() {
                                         <div className="handle_divprice">
                                             <p className="price">${item.price}</p>
                                         </div>
+                                        <button className='remove' onClick={() => removeItemLatestProduct(item.id)}><FaTrash /></button>
                                     </div>
-                                    <button className='remove' onClick={() => removeItemLatestProduct(item.id)}><FaTrash /></button>
                                 </div>
                             </div>
                         </div>
+
                     })}
                 </div>
                 <div className="handle_totalprice">
