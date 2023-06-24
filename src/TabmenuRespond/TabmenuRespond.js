@@ -1,21 +1,17 @@
-import { Link, Routes, Route } from 'react-router-dom'
-import Home from '../Header/Home/Home'
-import Contact from '../Header/Contact/Contact'
-import Affiliate from '../Header/Delivery/Delivery'
-import Special from '../Header/Special/Special'
-import Sitemap from '../Header/Sitemap/Sitemap'
-import Blogs from '../Header/Blog/Blog'
-import LapTopCart from '../Header/LapTopCart/LapTopCart'
+import { Link } from 'react-router-dom'
 import './TabmenuRespond.css'
 import { useContext, useEffect } from 'react'
 import { AppContext } from '../AppContext'
-import { FiMenu } from 'react-icons/fi'
 import { HiOutlineUser } from 'react-icons/hi'
-import Tabmenu from '../Tabmenu/Tabmenu'
-import Card from '../BestSellingCard/Card'
 export default function TabmenuRespond() {
-    const { showsidebar, hidesidebar, nav, setNav, navmenu, setNavmenu, show, setShow, categories, setCategories,
-        product, addCart, showsidebar_dropdown, user, setUser, handle_tabmenu, handle_tabmenu_show
+    const {
+        hidesidebar,
+        nav, setNav,
+        navmenu,
+        setNavmenu,
+        show,
+        setShow,
+        handle_tabmenu_show
     } = useContext(AppContext)
     const handle_resize = () => {
         setNav(!nav)
@@ -54,9 +50,7 @@ export default function TabmenuRespond() {
                     <li onClick={handle_tabmenu_show} className='menu_li'><Link to={`/special`}>SPECIAL</Link></li>
                     <li onClick={handle_tabmenu_show} className='menu_li'><Link to={`/sitemap`}>SITE MAP</Link></li>
                     <li onClick={handle_tabmenu_show} className='menu_li'><Link to={`/blogs`}>BLOGS</Link></li>
-
                 </ul>
-
             </nav>
         </div>
     )

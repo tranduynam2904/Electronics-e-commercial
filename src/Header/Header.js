@@ -44,13 +44,30 @@ import ava4 from './avatar4.png'
 import AOS from "aos";
 import "aos/dist/aos.css";
 import EmailCart from './LapTopCart/EmailCart/EmailCart'
+import ProductDetailProduct from '../ProductDetail/ProductDetailProduct'
+import ProductDetailProductLatest from '../ProductDetail/ProductDetailLatest'
 
 export default function Header() {
-    const { show, setShow, showsidebar, hidesidebar, nav, setNav, navmenu, setNavmenu, product, addCart,
-        categories, setCategories,
-        bestselling, setBestselling,
-        client, setClient,
-        user, setUser, handle_tabmenu, handle_tabmenu_show, cart, cartLatestProduct
+    const {
+        show,
+        setShow,
+        showsidebar,
+        hidesidebar,
+        nav,
+        setNav,
+        setNavmenu,
+        product,
+        addCart,
+        categories,
+        setCategories,
+        bestselling,
+        setBestselling,
+        client,
+        setClient,
+        user,
+        setUser,
+        cart,
+        cartLatestProduct
     } = useContext(AppContext)
     const handle_toggle = () => {
         setNavmenu(true)
@@ -61,6 +78,7 @@ export default function Header() {
         if (window.innerWidth <= 600) {
             setNav(true)
             setShow(false)
+            setUser(true)
         }
     }
     useEffect(() => {
@@ -116,17 +134,23 @@ export default function Header() {
                         }
                         <div className='handle_user'>
                             {!nav &&
-                                <Link onClick={() => hidesidebar()} to={`/user`}><HiOutlineUser style={{ cursor: 'pointer', fontSize: '1.8rem', marginRight: '10px' }} /></Link>
+                                <Link style={{ color: '#000' }} onClick={() => hidesidebar()} to={`/user`}><HiOutlineUser className='user_icon' style={{ cursor: 'pointer', fontSize: '1.8rem', marginRight: '10px' }} /></Link>
                             }
                             {!nav &&
-                                <Link onClick={() => showsidebar()} to={`/cart`}><AiOutlineShoppingCart style={{ cursor: 'pointer', fontSize: '1.8rem' }} /></Link>
+                                <Link style={{ color: '#000' }} className='handle_cartlink' onClick={() => showsidebar()} to={`/cart`}><AiOutlineShoppingCart className='user_icon' style={{ cursor: 'pointer', fontSize: '1.8rem' }} />
+                                    <div className='handle_divcartlenght'>
+                                        <span className='handle_cartlenght'>{cart.length + cartLatestProduct.length}</span>
+                                    </div>
+                                </Link>
                             }
                             {nav &&
-                                <Link to={`/cart`}><AiOutlineShoppingCart style={{ cursor: 'pointer', fontSize: '1.8rem' }} /></Link>
+                                <Link style={{ color: '#000',position:'relative'}} to={`/cart`}><AiOutlineShoppingCart className='user_icon' style={{ cursor: 'pointer', fontSize: '1.8rem' }} />
+                                    <div className='handle_divcartlenght'>
+                                        <span className='handle_cartlenght'>{cart.length + cartLatestProduct.length}</span>
+                                    </div>
+                                </Link>
                             }
-                            <span>{cart.length + cartLatestProduct.length}</span>
                         </div>
-
                     </div>
                 </div>
                 <div className='fake'></div>
@@ -195,6 +219,8 @@ export default function Header() {
                                 <Route path='/blogs/blog3' element={<BlogPages3 />}></Route>
                                 <Route path='/blogs/blog4' element={<BlogPages4 />}></Route>
                                 <Route path='/cart/user-cart' element={<EmailCart />}></Route>
+                                <Route path={'/product/:id1'} element={<ProductDetailProduct />}></Route >
+                                <Route path={'/product/latest/:id'} element={<ProductDetailProductLatest />}></Route>
                             </Routes>
                         </div>
                     </div>
@@ -209,10 +235,8 @@ export default function Header() {
                                                 whiteSpace: 'nowrap',
                                                 fontSize: '0.8rem',
                                                 cursor: 'pointer',
-
                                             }}>
                                             <FiMenu style={{ fontSize: '1.3rem' }} className='menu_icon' />CATEGORIES</li>
-
                                         <div className='handle_tabmenucategories' style={{ overflow: 'hidden', transition: '1s' }}>
                                             <div className={`handle_tabmenu ${categories ? "active1" : ""}`}  >
                                                 <Tabmenu />
@@ -225,7 +249,7 @@ export default function Header() {
                                                     {product && product.map((item, index) => (
                                                         <div index={index} className="handle_cardbestselling">
                                                             <div className="img">
-                                                                <Link>
+                                                                <Link to={`/product/${item.id1}`}>
                                                                     <img src={item.image}>
 
                                                                     </img>
@@ -241,7 +265,6 @@ export default function Header() {
                                                                 </div>
                                                             </div>
                                                         </div>
-
                                                     ))}
                                                 </div>
                                             </div>

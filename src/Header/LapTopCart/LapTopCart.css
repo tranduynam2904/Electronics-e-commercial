@@ -102,11 +102,11 @@
     outline: #9DB2BF solid 1px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center;    
 
 }
 
-.handle_info .handle_qty {
+.handle_qty {
     border: 1px solid #9DB2BF;
     /* height: 100%; */
     display: flex;
@@ -129,7 +129,7 @@
     width: 25%;
 }
 
-.handle_info .handle_qty .item_qty {
+.handle_qty .item_qty {
     width: 50%;
     /* margin-left: 5px;
     margin-right: 15px; */
@@ -139,12 +139,12 @@
     align-items: center;
 }
 
-.handle_info .handle_qty .handle_btn {
+.handle_qty .handle_btn {
     width: 50%;
     height: 50%;
 }
 
-.handle_info .handle_qty .handle_btn button {
+.handle_qty .handle_btn button {
     display: flex;
     align-items: center;
     justify-content: center;

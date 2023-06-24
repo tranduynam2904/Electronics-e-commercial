@@ -1,6 +1,22 @@
 import { Link } from 'react-router-dom'
 import './Blog.css'
+import { useContext,useEffect } from 'react'
+import { AppContext } from '../../AppContext'
 export default function Blogs() {
+    const {setUser} = useContext(AppContext)
+    const handle_resize = () => {
+        setUser(false)
+        if (window.innerWidth <= 600) {
+            setUser(true)
+        }
+    }
+    useEffect(() => {
+        handle_resize();
+        window.addEventListener('resize', handle_resize)
+        return () => {
+            window.removeEventListener('resize', handle_resize)
+        }
+    }, [])
     return (
         <div className="blog">
             <h1 style={{ textAlign: 'center', margin: '30px 0px' }}>LATEST BLOG</h1>

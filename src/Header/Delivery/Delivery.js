@@ -1,5 +1,22 @@
+import { useContext,useEffect } from 'react'
 import './Delivery.css'
+import { AppContext } from '../../AppContext'
 export default function Delivery() {
+    const {setUser} = useContext(AppContext)
+    const handle_resize = () => {
+        setUser(false)
+        if (window.innerWidth <= 600) {
+            setUser(true)
+        }
+    }
+    useEffect(() => {
+        handle_resize();
+        window.addEventListener('resize', handle_resize)
+        return () => {
+            window.removeEventListener('resize', handle_resize)
+        }
+    }, [])
+
     return (
         <div className="handle_delivery" style={{padding:'20px'}}>
             <h1 style={{textAlign:'center'}}>Our Delivery</h1>

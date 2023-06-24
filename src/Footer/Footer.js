@@ -43,7 +43,11 @@ export default function Footer() {
             <div className='footer_infomation'>
                 <div className='handle_infomation'>
                     <div className='row'>
-                        <div className='col'>
+                        <div
+                            data-aos="zoom-in"
+                            data-aos-delay="100"
+                            data-aos-duration="500"
+                            className='col'>
                             <h1>STORE INFOMATION</h1>
                             <div style={{ lineHeight: '35px' }}>
                                 <p>Elvano - Gear Store</p>
@@ -52,7 +56,11 @@ export default function Footer() {
                                 <p>Email: tranduynam2904@gmail.com</p>
                             </div>
                         </div>
-                        <div className='col'>
+                        <div
+                            data-aos="zoom-in"
+                            data-aos-delay="200"
+                            data-aos-duration="500"
+                            className='col'>
                             <h1>INFOMATION</h1>
                             <ul style={{ listStyle: 'none', lineHeight: '35px' }}>
                                 <li><Link>About Us</Link></li>
@@ -62,7 +70,11 @@ export default function Footer() {
                                 <li><Link>Site Map</Link></li>
                             </ul>
                         </div>
-                        <div className='col'>
+                        <div
+                            data-aos="zoom-in"
+                            data-aos-delay="300"
+                            data-aos-duration="500"
+                            className='col'>
                             <h1>EXTRAS</h1>
                             <ul style={{ listStyle: 'none', lineHeight: '35px' }}>
                                 <li><Link>Brands</Link></li>
@@ -72,7 +84,11 @@ export default function Footer() {
                                 <li><Link>Contact Us</Link></li>
                             </ul>
                         </div>
-                        <div className='col'>
+                        <div
+                            data-aos="zoom-in"
+                            data-aos-delay="400"
+                            data-aos-duration="500"
+                            className='col'>
                             <h1>SUBSCRIBE NOW</h1>
                             <div style={{ lineHeight: '35px' }}>
                                 <p>Subscribe our newsletter get 10% off your first update.</p>

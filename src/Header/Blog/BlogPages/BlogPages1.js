@@ -15,18 +15,22 @@ export default function BlogPages1() {
                 <div className="blogpage_img">
                     <img src='https://fdn.gsmarena.com/imgroot/news/23/06/apple-macbook-air-15/-1200/gsmarena_001.jpg'></img>
                 </div>
-                <div className="handle_info">
-                    <AiOutlineMenuUnfold className="blog_icon icon1" />
-                   
-                    <Link onClick={() => showsidebar()} to={`/blogs`}><span></span>BACK TO BLOGS</Link>
-                    <IoCalendarOutline className="blog_icon" />
-                    <span>On: Friday, June 05, 2023</span>
-                    <FaRegComments className="blog_icon" />
-                    <span>Comment: 0</span>
+                <div className="handle_bloginfo">
+                    <span>
+                        <AiOutlineMenuUnfold className="blog_icon" /><Link onClick={() => showsidebar()} to={`/blogs`}>
+                            BACK TO BLOGS
+                        </Link>
+                    </span>
+                    <span>
+                        <IoCalendarOutline className="blog_icon" />On: Friday, June 05, 2023
+                    </span>
+                    <span>
+                        <FaRegComments className="blog_icon" />Comment: 0
+                    </span>
                 </div>
             </div>
             <div className="handle_lorem">
-            <LoremIpsum p={4} />
+                <LoremIpsum p={4} />
             </div>
         </div>
     )

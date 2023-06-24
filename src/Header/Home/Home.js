@@ -9,9 +9,23 @@ export default function Home() {
     const { sortedProductsAsc,
         sortedProductsDesc,
         handleSortOrderChange,
-        sortOrder
+        sortOrder,
+        setUser
 
     } = useContext(AppContext)
+    const handle_resize = () => {
+        setUser(false)
+        if (window.innerWidth <= 600) {
+            setUser(true)
+        }
+    }
+    useEffect(() => {
+        handle_resize();
+        window.addEventListener('resize', handle_resize)
+        return () => {
+            window.removeEventListener('resize', handle_resize)
+        }
+    }, [])
     return (
         <>
             <SliderComponent />

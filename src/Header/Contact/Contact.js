@@ -3,11 +3,18 @@ import React, { useContext, useRef } from 'react';
 import emailjs from '@emailjs/browser';
 import { AppContext } from '../../AppContext';
 export default function Contact() {
-    const {SubmitContact}= useContext(AppContext)
+    const {
+        SubmitContact,
+        contactName,
+        contactEmail,
+        onChangeContactEmail,
+        onChangeContactName,
+    }
+        = useContext(AppContext)
     const form = useRef()
     const sendEmail = (e) => {
         e.preventDefault();
-        emailjs.sendForm('service_33ptgom', 'template_i2dnaeh', form.current, 'sobri6eby9CjRPEns')
+        emailjs.sendForm('service_33ptgom', 'template_j70exf7', form.current, 'sobri6eby9CjRPEns')
             .then((result) => {
                 console.log(result.text);
             }, (error) => {
@@ -16,7 +23,7 @@ export default function Contact() {
         e.target.reset()
     };
     return (
-        <div style={{ width:'100%', marginLeft: '50px', marginTop: '50px' }} className="contact">
+        <div style={{ width: '100%', marginLeft: '50px', marginTop: '50px' }} className="contact">
             <h1>
                 Contact Us
             </h1>
@@ -24,13 +31,27 @@ export default function Contact() {
                 <div className='handle_form'>
                     <label for="input-name">Your Name</label>
                     <div className='handle_input'>
-                        <input type="text" name='user_name' placeholder="Your Name" id="input-name"></input>
+                        <input
+                            value={contactName}
+                            onChange={onChangeContactName}
+                            type="text"
+                            name='user_name'
+                            placeholder="Your Name"
+                            id="input-name">
+                        </input>
                     </div>
                 </div>
                 <div className='handle_form'>
                     <label for="input-email">Email</label>
                     <div className='handle_input'>
-                        <input type="email" name='user_email' placeholder="Your Email" id="input-email"></input>
+                        <input
+                            value={contactEmail}
+                            onChange={onChangeContactEmail}
+                            type="email"
+                            name='user_email'
+                            placeholder="Your Email"
+                            id="input-email">
+                        </input>
                     </div>
                 </div>
                 <div className='handle_form'>
@@ -40,7 +61,10 @@ export default function Contact() {
                     </div>
                 </div>
                 <div className='handle_submit'>
-                    <button onClick={SubmitContact} type='submit'>Submit</button>
+                    <button
+                        onClick={SubmitContact}
+                        type='submit'
+                    >Submit</button>
                     <div className='handle_red'>
                         <p className='handle_rotatecolor' style={{ background: 'blue' }}></p>
                     </div>
