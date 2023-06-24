@@ -252,7 +252,7 @@ export default function Header() {
                                                                     <h1 style={{ color: '#0364BE' }}>{item.name}</h1>
                                                                     <p>${item.price}</p>
                                                                     <div className="button_addtocart">
-                                                                        <button onClick={() => addCart(item.id)}>ADD TO CART</button>
+                                                                        <button onClick={() => addCart(item.id1)}>ADD TO CART</button>
                                                                     </div>
                                                                 </div>
                                                             </div>
