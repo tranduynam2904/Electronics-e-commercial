@@ -269,7 +269,12 @@ export default function Header() {
                                     <p className='title' style={{ width: '250px' }}>BEST SELLING PRODUCTS</p>
                                     <Card />
                                 </div>
-                                <div style={{ marginTop: '30px' }} className='handle_clientsays'>
+                                <div 
+                               data-aos="fade-right"
+                               data-aos-duration="500"
+                               data-aos-easing="ease-in-sine"
+                                 
+                                style={{ marginTop: '30px' }} className='handle_clientsays'>
                                     <p className='title' style={{ width: '250px' }}>CLIENT SAYS</p>
                                     <SliderClient />
                                 </div>

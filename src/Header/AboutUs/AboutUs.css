@@ -1,12 +1,18 @@
 .aboutus {
     font-family: 'Roboto Slab', serif;
     padding: 20px;
-   
+
 }
-.aboutus h3{
+
+.aboutus h3 {
     margin-left: 30px;
-  
+
 }
+
+.aboutus h1 {
+    margin-bottom: 50px;
+}
+
 .aboutus .rowaboutus {
     display: flex;
     width: 100%;
@@ -18,9 +24,11 @@
     width: calc(100% / 3);
     padding: 0px 20px;
 }
-.aboutus .rowaboutus .col .handle_aboutus{
+
+.aboutus .rowaboutus .col .handle_aboutus {
     width: 100%;
 }
+
 .aboutus li {
     list-style: none;
 }
@@ -34,20 +42,28 @@
     .aboutus {
         font-family: 'Roboto Slab', serif;
         padding: 10px;
-       
+
     }
+
     .aboutus .rowaboutus {
         display: block;
         line-height: 25px;
     }
-    .aboutus .rowaboutus .col{
+
+    .aboutus .rowaboutus .col {
         width: 100%;
-    padding: 0;
+        padding: 0;
     }
-    .aboutus .rowaboutus h4{
+
+    .aboutus .rowaboutus h4 {
         margin-top: 25px;
     }
-    .aboutus h3{
+
+    .aboutus h3 {
         margin-left: 10px;
     }
+    .aboutus h1 {
+        margin-bottom: 20px;
+    }
+    
 }

@@ -3,7 +3,7 @@ export default function AboutUs() {
     return (
         <div className="aboutus">
             <h1 style={{textAlign:'center'}}>About Us</h1>
-            <h3>About Us</h3>
+
             <div className='rowaboutus'>
                 <div className='col'>
                     <div className='handle_aboutus'>
