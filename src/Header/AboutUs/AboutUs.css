@@ -1,0 +1,53 @@
+.aboutus {
+    font-family: 'Roboto Slab', serif;
+    padding: 20px;
+   
+}
+.aboutus h3{
+    margin-left: 30px;
+  
+}
+.aboutus .rowaboutus {
+    display: flex;
+    width: 100%;
+    line-height: 25px;
+
+}
+
+.aboutus .rowaboutus .col {
+    width: calc(100% / 3);
+    padding: 0px 20px;
+}
+.aboutus .rowaboutus .col .handle_aboutus{
+    width: 100%;
+}
+.aboutus li {
+    list-style: none;
+}
+
+.aboutus .handle_aboutus img {
+    width: 100%;
+
+}
+
+@media screen and (max-width: 600px) {
+    .aboutus {
+        font-family: 'Roboto Slab', serif;
+        padding: 10px;
+       
+    }
+    .aboutus .rowaboutus {
+        display: block;
+        line-height: 25px;
+    }
+    .aboutus .rowaboutus .col{
+        width: 100%;
+    padding: 0;
+    }
+    .aboutus .rowaboutus h4{
+        margin-top: 25px;
+    }
+    .aboutus h3{
+        margin-left: 10px;
+    }
+}

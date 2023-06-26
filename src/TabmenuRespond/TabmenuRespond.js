@@ -47,7 +47,7 @@ export default function TabmenuRespond() {
                     <li onClick={handle_tabmenu_show} className='menu_li'><Link to={`/home`}>HOME</Link></li>
                     <li onClick={handle_tabmenu_show} className='menu_li'><Link to={`/contact`}>CONTACT</Link></li>
                     <li onClick={handle_tabmenu_show} className='menu_li'><Link to={`/delivery`}>DELIVERY</Link></li>
-                    <li onClick={handle_tabmenu_show} className='menu_li'><Link to={`/special`}>SPECIAL</Link></li>
+                    <li onClick={handle_tabmenu_show} className='menu_li'><Link to={`/aboutus`}>ABOUT US</Link></li>
                     <li onClick={handle_tabmenu_show} className='menu_li'><Link to={`/sitemap`}>SITE MAP</Link></li>
                     <li onClick={handle_tabmenu_show} className='menu_li'><Link to={`/blogs`}>BLOGS</Link></li>
                 </ul>

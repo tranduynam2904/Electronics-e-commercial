@@ -16,7 +16,6 @@ export default function Card() {
                     data-aos-easing="ease-in-sine" index={index} className="handle_cardbestselling">
                     <div className="img">
                         <Link
-                            // onClick={handle_tabmenu_show}
                             key={item.id1}
                             to={`/product/${item.id1}`}>
                             <img

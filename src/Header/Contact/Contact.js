@@ -23,7 +23,7 @@ export default function Contact() {
         e.target.reset()
     };
     return (
-        <div style={{ width: '100%', marginLeft: '50px', marginTop: '50px' }} className="contact">
+        <div className="contact">
             <h1>
                 Contact Us
             </h1>

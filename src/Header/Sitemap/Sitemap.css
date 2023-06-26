@@ -18,3 +18,8 @@
 .Sitemap ul{
     margin-left: 40px;
 }
+@media screen and (max-width:600px) {
+    .Sitemap {
+        padding: 10px;
+    }
+}

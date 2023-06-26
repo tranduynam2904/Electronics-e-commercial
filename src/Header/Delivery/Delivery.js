@@ -18,7 +18,7 @@ export default function Delivery() {
     }, [])
 
     return (
-        <div className="handle_delivery" style={{padding:'20px'}}>
+        <div className="handle_delivery">
             <h1 style={{textAlign:'center'}}>Our Delivery</h1>
             <h1 style={{margin:'10px 0px',whiteSpace:'nowrap'}}>
                 Shipments and returns

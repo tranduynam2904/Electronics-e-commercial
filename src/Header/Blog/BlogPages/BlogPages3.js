@@ -26,7 +26,6 @@ export default function BlogPages3() {
                         <FaRegComments className="blog_icon" /><p>Comment: 0</p>
                     </span>
                 </div>
-
             </div>
             <div className="handle_lorem">
                 <LoremIpsum p={4} />

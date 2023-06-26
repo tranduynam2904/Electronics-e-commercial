@@ -6,7 +6,7 @@ import Delivery from './Delivery/Delivery'
 import Sitemap from './Sitemap/Sitemap'
 import './Header.css'
 import logo from './logoGear.png'
-import { useEffect } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import AboutUs from './AboutUs/AboutUs'
 import { FiMenu } from 'react-icons/fi'
 import React from 'react'
@@ -40,6 +40,7 @@ import EmailCart from './LapTopCart/EmailCart/EmailCart'
 import ProductDetailProduct from '../ProductDetail/ProductDetailProduct'
 import ProductDetailProductLatest from '../ProductDetail/ProductDetailLatest'
 
+
 export default function Header() {
     const {
         show,
@@ -60,7 +61,12 @@ export default function Header() {
         user,
         setUser,
         cart,
-        cartLatestProduct
+        cartLatestProduct,
+        HandleSearch,
+        SearchArea,
+        SearchResultLatest,
+        SearchResult
+
     } = useContext(AppContext)
     const handle_toggle = () => {
         setNavmenu(true)
@@ -103,7 +109,34 @@ export default function Header() {
         slidesToShow: 1,
         slidesToScroll: 1
     };
+    const SearchRef = useRef(null)
+    // const [isSearchVisible, setIsSearchVisible] = useState(false);
+    // useEffect(() => {
+    //     const handle_click_outside = (e) => {
+    //         if (SearchRef.current && !SearchRef.current.contains(e.target) && isSearchVisible) {
+    //             setIsSearchVisible(false);
+    //         }
+    //     }
+    //     if (isSearchVisible) {
+    //         document.addEventListener('click', handle_click_outside);
+    //     }
+    //     return () => {
+    //         document.removeEventListener('click', handle_click_outside)
+    //     };
+    // }, [SearchRef, isSearchVisible])
+    // const handle_click_searcharea = () => {
+    //     setIsSearchVisible(true);
 
+    // }
+    const [isFocused, setIsFocused] = useState(false);
+
+    function handleInputFocus() {
+        setIsFocused(true);
+    }
+
+    function handleInputBlur() {
+        setIsFocused(false);
+    }
     return (
         <>
             <div className='header'>
@@ -113,8 +146,56 @@ export default function Header() {
                     }
                     <Link className='logo_link' onClick={() => showsidebar()} to={`/`}><img src={logo}></img></Link>
                     <div className='search_area'>
-                        <p><input type='text' placeholder='Search Product Here'></input><AiOutlineSearch className='search_icon' /></p>
+                        <p className='handle_search_input'><input
+                            onFocus={handleInputFocus}
+                            // onBlur={handleInputBlur}
+                            type='text'
+                            onChange={HandleSearch}
+                            value={SearchArea}
+                            placeholder='Search Product Here'>
+                        </input>
+                            <AiOutlineSearch
+                                style={{ cursor: 'pointer' }}
+                                className='search_icon' />
+                        </p>
+                        {isFocused &&
+                            <div ref={SearchRef} className='search_info'>
+                                {
+                                    SearchResultLatest.length > 0 && (
+                                        <ul>
+                                            {SearchResultLatest.map((item) => {
+                                                return <li>
+                                                    <Link
+                                                        onClick={handleInputBlur}
+                                                        key={item.id}
+                                                        to={`/product/latest/${item.id}`}>
+                                                        <img src={item.image}></img>
+                                                        <p className='handle_result_name'>{item.name}</p>
+                                                    </Link>
+                                                </li>
+                                            })}
+                                        </ul>
+                                    )}
+                                {
+                                    SearchResult.length > 0 && (
+                                        <ul>
+                                            {SearchResult.map((item) => {
+                                                return <li >
+                                                    <Link
+                                                        onClick={handleInputBlur}
+                                                        key={item.id1}
+                                                        to={`/product/${item.id1}`}>
+                                                        <img src={item.image}></img>
+                                                        <p className='handle_result_name'>{item.name}</p>
+                                                    </Link>
+                                                </li>
+                                            })}
+                                        </ul>
+                                    )}
+                            </div>
+                        }
                     </div>
+
                     <div className='handle_contact'>
                         {!nav &&
                             <RiCustomerService2Line className='customer_icon' style={{ fontSize: "3rem", marginRight: '15px' }} />
@@ -137,7 +218,7 @@ export default function Header() {
                                 </Link>
                             }
                             {nav &&
-                                <Link style={{ color: '#000',position:'relative'}} to={`/cart`}><AiOutlineShoppingCart className='user_icon' style={{ cursor: 'pointer', fontSize: '1.8rem' }} />
+                                <Link style={{ color: '#000', position: 'relative' }} to={`/cart`}><AiOutlineShoppingCart className='user_icon' style={{ cursor: 'pointer', fontSize: '1.8rem' }} />
                                     <div className='handle_divcartlenght'>
                                         <span className='handle_cartlenght'>{cart.length + cartLatestProduct.length}</span>
                                     </div>
@@ -167,7 +248,7 @@ export default function Header() {
                                     <Link onClick={() => showsidebar()} to={`/delivery`}>DELIVERY</Link>
                                 </li>
                                 <li className='menu_li li4'>
-                                    <Link onClick={() => showsidebar()} to={`/special`}>ABOUT US</Link>
+                                    <Link onClick={() => showsidebar()} to={`/aboutus`}>ABOUT US</Link>
                                 </li>
                                 <li style={{ margin: '0px 5px' }} className='menu_li li5'>
                                     <Link onClick={() => showsidebar()} to={`/sitemap`}>SITE MAP</Link>
@@ -192,7 +273,6 @@ export default function Header() {
                                     <p className='title' style={{ width: '250px' }}>CLIENT SAYS</p>
                                     <SliderClient />
                                 </div>
-
                             </ul>
                         }
                         <div className='handle_path'>
@@ -201,7 +281,7 @@ export default function Header() {
                                 <Route path='/home' element={<Home />} ></Route>
                                 <Route path='/contact' element={<Contact />}></Route>
                                 <Route path='/delivery' element={<Delivery />}></Route>
-                                <Route path='/special' element={<AboutUs />}></Route>
+                                <Route path='/aboutus' element={<AboutUs />}></Route>
                                 <Route path='/sitemap' element={<Sitemap />}></Route>
                                 <Route path='/blogs' element={<Blogs />}></Route>
                                 <Route path='/cart' element={<LapTopCart />}></Route>

@@ -19,7 +19,7 @@ export default function Blogs() {
     }, [])
     return (
         <div className="blog">
-            <h1 style={{ textAlign: 'center', margin: '30px 0px' }}>LATEST BLOG</h1>
+            <h1 style={{ textAlign: 'center' }}>LATEST BLOG</h1>
             <div className="row">
                 <div className="col">
                     <div className="card">

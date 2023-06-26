@@ -22,7 +22,7 @@ export default function EmailCart() {
         e.target.reset()
     };
     return (
-        <div style={{ width: '100%', marginLeft: '50px', marginTop: '50px' }} className="contact">
+        <div className="contact">
             <h1>
                 Shipping Infomation
             </h1>
@@ -34,6 +34,12 @@ export default function EmailCart() {
                     </div>
                 </div>
                 <div className='handle_form'>
+                    <label for="input-name">Your Phone</label>
+                    <div className='handle_input'>
+                        <input type="text" name='user_phone' placeholder="Your Phone" id="input-phone"></input>
+                    </div>
+                </div>
+                <div className='handle_form'>
                     <label for="input-email">Email</label>
                     <div className='handle_input'>
                         <input type="email" name='user_email' placeholder="Your Email" id="input-email"></input>
@@ -42,7 +48,7 @@ export default function EmailCart() {
                 <div className='handle_form'>
                     <label for="input-email">Your Address</label>
                     <div className='handle_input'>
-                        <input type="text" name='user_address' placeholder="Your Address" id="input-email"></input>
+                        <input type="text" name='user_address' placeholder="Your Address" id="input-address"></input>
                     </div>
                 </div>
                 <div>{cart && cart.price}</div>

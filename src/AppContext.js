@@ -1,6 +1,7 @@
 import { createContext } from "react"
 import { useState, useEffect } from "react"
 import { useRef } from "react"
+import { filter, includes } from 'lodash'
 import swal from 'sweetalert';
 import 'react-toastify/dist/ReactToastify.css';
 export const AppContext = createContext({})
@@ -183,17 +184,40 @@ export const AppProvider = ({ children }) => {
         productList += `(Name: ${item.name}\n - Price: $${item.originalprice}\n - Quantity: ${item.qty}\n - Total: $${item.price}), \n`;
     }
 
+    // const [sortOrder, setSortOrder] = useState([]);
+    // const handleSortOrderChange = (event) => {
+    //     setSortOrder(event.target.value);
+    //     const sortedProducts = sortOrder === 'asc' ?
+    //         [...latestProduct].sort((a, b) => b.price - a.price) : sortOrder === 'desc' ?
+    //             [...latestProduct].sort((a, b) => a.price - b.price) : sortOrder === 'AZ' ?
+    //                 [...latestProduct].sort((a, b) => b.name.localeCompare(a.name)) : sortOrder === 'ZA' ?
+    //                     [...latestProduct].sort((a, b) => a.name.localeCompare(b.name)) : latestProduct;
+    //     setLatestProduct(sortedProducts);
+    // };
+
     const [sortOrder, setSortOrder] = useState([]);
-    const handleSortOrderChange = (event) => {
-        setSortOrder(event.target.value);
-        const sortedProducts = sortOrder === 'asc' ?
-            [...latestProduct].sort((a, b) => b.price - a.price) : sortOrder === 'desc' ?
-                [...latestProduct].sort((a, b) => a.price - b.price) : sortOrder === 'AZ' ?
-                    [...latestProduct].sort((a, b) => b.name.localeCompare(a.name)) : sortOrder === 'ZA' ?
-                        [...latestProduct].sort((a, b) => a.name.localeCompare(b.name)) : latestProduct;
+    const handleSortOrderChange = (e) => {
+        const selectedValue = e.target.value;
+        setSortOrder(selectedValue);
+        let sortedProducts = [];
+
+        if (selectedValue === "AZ") {
+            sortedProducts = [...latestProduct].sort((a, b) =>
+                a.name.localeCompare(b.name)
+            );
+        } else if (selectedValue === "ZA") {
+            sortedProducts = [...latestProduct].sort((a, b) =>
+                b.name.localeCompare(a.name)
+            );
+        } else if (selectedValue === "asc") {
+            sortedProducts = [...latestProduct].sort((a, b) => a.price - b.price);
+        } else if (selectedValue === "desc") {
+            sortedProducts = [...latestProduct].sort((a, b) => b.price - a.price);
+        } else {
+            sortedProducts = latestProduct;
+        }
         setLatestProduct(sortedProducts);
     };
-
     const addCart = (id) => {
         let kq = product.find((item) => item.id1 == id);
         const index = cart.findIndex((item) => item.id1 == id);
@@ -505,6 +529,26 @@ export const AppProvider = ({ children }) => {
     const SubmitProcess = () => {
         swal("Thank You For Your Purchase!", "We will ship to your address soon!", "success");
     }
+    const [SearchArea, setSearchArea] = useState('')
+    const [SearchResultLatest, setSearchResultLatest] = useState([])
+    const [SearchResult, setSearchResult] = useState([])
+    const HandleSearch = (e) => {
+        const value = e.target.value.toLowerCase();
+        setSearchArea(value)
+        if (value === '') {
+            setSearchResultLatest([])
+            setSearchResult([])
+        }
+        else {
+            const resultlatest = filter(latestProduct, (item) =>
+                includes(item.name.toLowerCase(), SearchArea.toLowerCase()))
+            const result = filter(product, (item) =>
+                includes(item.name.toLowerCase(), SearchArea.toLowerCase()))
+            setSearchResultLatest(resultlatest);
+            setSearchResult(result)
+        }
+    }
+
     return (
         <AppContext.Provider value={{
             RegisterSubmit, focusRegisterEmail, focusRegisterPassWord, focusRegisterUserName, inputRegisterEmailRef
@@ -557,7 +601,12 @@ export const AppProvider = ({ children }) => {
             onChangeContactEmail,
             onChangeContactName,
             productDetail,
-            selectedProduct
+            selectedProduct,
+            setSearchArea,
+            HandleSearch,
+            SearchArea,
+            SearchResultLatest,
+            SearchResult,
         }
         }>
             {children}

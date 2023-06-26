@@ -1,4 +1,10 @@
-.handle_delivery{
+.handle_delivery {
     font-family: 'Roboto Slab', serif;
-    
+    padding: 20px;
+}
+
+@media screen and (max-width: 600px) {
+    .handle_delivery {
+        padding: 10px;
+    }
 }

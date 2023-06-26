@@ -39,12 +39,6 @@
     padding-left: 5px;
 }
 
-.handle_card .handle_cardbestselling .handle_title h4 {
-    /* text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap; */
-}
-
 .handle_card .handle_cardbestselling .handle_title p {
     margin: 3px 0px;
     font-size: 0.9rem;

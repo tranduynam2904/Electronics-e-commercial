@@ -1,5 +1,6 @@
 .blog {
-    font-family: 'Noto Sans', sans-serif;
+    font-family: 'Roboto Slab', serif;
+    padding: 20px;
 }
 
 .blog .row {
@@ -10,8 +11,8 @@
 }
 
 .blog .row .col {
-    width: calc(90% / 2);
-    margin: 20px;
+    width: calc(100% / 2);
+    padding: 10px;
 }
 
 .blog .row .col .card {
@@ -32,13 +33,17 @@
 
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 600px) {
     .blog .row {
         display: block;
     }
 
     .blog .row .col {
         width: 100%;
-        margin: 20px 0px;
+    }
+
+    .blog {
+        font-family: 'Roboto Slab', serif;
+        padding: 10px;
     }
 }
