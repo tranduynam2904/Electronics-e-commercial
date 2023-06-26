@@ -86,7 +86,7 @@ export const AppProvider = ({ children }) => {
         },
         {
             id: '5',
-            image: 'https://product.hstatic.net/200000420363/product/laptop-asus-vivobook-15x-oled-a1503za-l1422w-_819613dc5a11434587685e4c52d72cc8_master.jpg',
+            image: 'https://product.hstatic.net/200000420363/product/laptop-asus-vivobook-15x-oled-a1503za-l1422w_7d84c75da414458091f257835d17f9f5_master.png',
             name: 'ASUS VIVOBOOK 15X OLED A1503ZA L1422W',
             qty: 1,
             originalprice: 722.06,
