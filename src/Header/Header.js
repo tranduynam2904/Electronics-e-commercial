@@ -130,13 +130,16 @@ export default function Header() {
     // }
     const [isFocused, setIsFocused] = useState(false);
 
-    function handleInputFocus() {
+    const handleInputFocus = () => {
         setIsFocused(true);
     }
 
-    function handleInputBlur() {
+    const handleInputBlur = () => {
         setIsFocused(false);
     }
+    // const handleLinkClick = () => {
+    //     setIsFocused(false);
+    // }
     return (
         <>
             <div className='header'>
@@ -269,12 +272,12 @@ export default function Header() {
                                     <p className='title' style={{ width: '250px' }}>BEST SELLING PRODUCTS</p>
                                     <Card />
                                 </div>
-                                <div 
-                               data-aos="fade-right"
-                               data-aos-duration="500"
-                               data-aos-easing="ease-in-sine"
-                                 
-                                style={{ marginTop: '30px' }} className='handle_clientsays'>
+                                <div
+                                    data-aos="fade-right"
+                                    data-aos-duration="500"
+                                    data-aos-easing="ease-in-sine"
+
+                                    style={{ marginTop: '30px' }} className='handle_clientsays'>
                                     <p className='title' style={{ width: '250px' }}>CLIENT SAYS</p>
                                     <SliderClient />
                                 </div>
