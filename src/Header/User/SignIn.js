@@ -17,12 +17,17 @@ export default function SignIn() {
         inputEmailRef,
         focusPassWord,
         inputPassWordRef,
+        hidesidebar,
         setShow, user, setUser } = useContext(AppContext)
 
     useEffect(() => {
         setShow(false)
         setUser(false)
     })
+    const handleRegister = () => {
+        window.location.href = `/register`
+        hidesidebar()
+    }
     return (
         <form onSubmit={submit}>
             <div className="signin">
@@ -52,7 +57,11 @@ export default function SignIn() {
                             </input>
                         </div>
                         <div style={{ marginTop: '10px', marginRight: '50px', textAlign: 'end' }}>
-                            <Link to={`/register`} style={{ textDecoration: 'underline' }}>Register an account</Link>
+                            <Link 
+                            // to={`/register`} 
+                            onClick={handleRegister}
+                            style={{ textDecoration: 'underline' }}
+                            >Register an account</Link>
                         </div>
                         <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px', marginBottom: '20px' }}>
                             <div className='handle_submit'>

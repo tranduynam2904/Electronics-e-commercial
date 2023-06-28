@@ -31,7 +31,34 @@ export default function TabmenuRespond() {
     const handle_close = () => {
         setNavmenu(false)
     }
-
+    const handleHome = () => {
+        window.location.href = `/home`
+        handle_tabmenu_show()
+    }
+    const handleContact = () => {
+        window.location.href = `/contact`
+        handle_tabmenu_show()
+    }
+    const handleDelivery = () => {
+        window.location.href = `/delivery`
+        handle_tabmenu_show()
+    }
+    const handleAboutUs = () => {
+        window.location.href = `/aboutus`
+        handle_tabmenu_show()
+    }
+    const handleSiteMap = () => {
+        window.location.href = `/sitemap`
+        handle_tabmenu_show()
+    }
+    const handleBlogs = () => {
+        window.location.href = `/blogs`
+        handle_tabmenu_show()
+    }
+    const handleSignIn = () => {
+        window.location.href = `/user`
+        hidesidebar()
+    }
     return (
         <div className={`tabmenurespond ${navmenu ? "active" : ''}`}>
             <div style={{ display: 'flex', justifyContent: 'center' }}>
@@ -40,16 +67,19 @@ export default function TabmenuRespond() {
                 </div>
             </div>
             <div style={{ textAlign: 'center', display: 'flex', justifyContent: 'center', marginTop: '20px', marginBottom: '20px' }}>
-                <Link onClick={() => hidesidebar()} to={`/user`}><HiOutlineUser style={{ cursor: 'pointer', fontSize: '1.8rem' }} /></Link>
+                <Link
+                    onClick={handleSignIn}
+                    // to={`/user`}
+                ><HiOutlineUser style={{ cursor: 'pointer', fontSize: '1.8rem' }} /></Link>
             </div>
             <nav>
                 <ul>
-                    <li onClick={handle_tabmenu_show} className='menu_li'><Link to={`/home`}>HOME</Link></li>
-                    <li onClick={handle_tabmenu_show} className='menu_li'><Link to={`/contact`}>CONTACT</Link></li>
-                    <li onClick={handle_tabmenu_show} className='menu_li'><Link to={`/delivery`}>DELIVERY</Link></li>
-                    <li onClick={handle_tabmenu_show} className='menu_li'><Link to={`/aboutus`}>ABOUT US</Link></li>
-                    <li onClick={handle_tabmenu_show} className='menu_li'><Link to={`/sitemap`}>SITE MAP</Link></li>
-                    <li onClick={handle_tabmenu_show} className='menu_li'><Link to={`/blogs`}>BLOGS</Link></li>
+                    <li onClick={handleHome} className='menu_li'><Link to={`/home`}>HOME</Link></li>
+                    <li onClick={handleContact} className='menu_li'><Link to={`/contact`}>CONTACT</Link></li>
+                    <li onClick={handleDelivery} className='menu_li'><Link to={`/delivery`}>DELIVERY</Link></li>
+                    <li onClick={handleAboutUs} className='menu_li'><Link to={`/aboutus`}>ABOUT US</Link></li>
+                    <li onClick={handleSiteMap} className='menu_li'><Link to={`/sitemap`}>SITE MAP</Link></li>
+                    <li onClick={handleBlogs} className='menu_li'><Link to={`/blogs`}>BLOGS</Link></li>
                 </ul>
             </nav>
         </div>

@@ -8,6 +8,8 @@ export default function Card() {
         product,
         addCart,
     } = useContext(AppContext)
+    // const refresh = () => window.location.reload(true)
+
     return (
         <div style={{ marginTop: '10px', background: '#fff' }} className="handle_card">
             {product && product.map((item, index) => (
@@ -17,7 +19,9 @@ export default function Card() {
                     <div className="img">
                         <Link
                             key={item.id1}
-                            to={`/product/${item.id1}`}>
+                            // to={`/product/${item.id1}`}
+                            onClick={() => window.location.href = `/product/${item.id1}`}
+                        >
                             <img
                                 alt={item.name}
                                 src={item.image}>

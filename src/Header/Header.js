@@ -110,36 +110,56 @@ export default function Header() {
         slidesToScroll: 1
     };
     const SearchRef = useRef(null)
-    // const [isSearchVisible, setIsSearchVisible] = useState(false);
-    // useEffect(() => {
-    //     const handle_click_outside = (e) => {
-    //         if (SearchRef.current && !SearchRef.current.contains(e.target) && isSearchVisible) {
-    //             setIsSearchVisible(false);
-    //         }
-    //     }
-    //     if (isSearchVisible) {
-    //         document.addEventListener('click', handle_click_outside);
-    //     }
-    //     return () => {
-    //         document.removeEventListener('click', handle_click_outside)
-    //     };
-    // }, [SearchRef, isSearchVisible])
-    // const handle_click_searcharea = () => {
-    //     setIsSearchVisible(true);
 
-    // }
     const [isFocused, setIsFocused] = useState(false);
 
     const handleInputFocus = () => {
         setIsFocused(true);
     }
 
-    const handleInputBlur = () => {
-        setIsFocused(false);
-    }
-    // const handleLinkClick = () => {
+    // const handleInputBlur = () => {
     //     setIsFocused(false);
     // }
+    // // const handleLinkClick = () => {
+    // //     setIsFocused(false);
+    // // }
+
+    const handleHome = () => {
+        window.location.href = `/home`
+        showsidebar()
+    }
+    const handleContact = () => {
+        window.location.href = `/contact`
+        showsidebar()
+    }
+    const handleDelivery = () => {
+        window.location.href = `/delivery`
+        showsidebar()
+    }
+    const handleAboutUs = () => {
+        window.location.href = `/aboutus`
+        showsidebar()
+    }
+    const handleSiteMap = () => {
+        window.location.href = `/sitemap`
+        showsidebar()
+    }
+    const handleBlogs = () => {
+        window.location.href = `/blogs`
+        showsidebar()
+    }
+    const handleLogo = () => {
+        window.location.href = `/`
+        showsidebar()
+    }
+    const handleSignIn = () => {
+        window.location.href = `/user`
+        hidesidebar()
+    }
+    const handleCart = () => {
+        window.location.href = `/cart`
+        showsidebar()
+    }
     return (
         <>
             <div className='header'>
@@ -147,11 +167,14 @@ export default function Header() {
                     {nav &&
                         <buton onClick={handle_toggle} className='handle_toggle'><img src={toggle}></img></buton>
                     }
-                    <Link className='logo_link' onClick={() => showsidebar()} to={`/`}><img src={logo}></img></Link>
+                    <Link className='logo_link'
+                        onClick={handleLogo}
+                    // to={`/`}
+                    ><img src={logo}></img></Link>
                     <div className='search_area'>
                         <p className='handle_search_input'><input
-                            onFocus={handleInputFocus}
-                            // onBlur={handleInputBlur}
+
+
                             type='text'
                             onChange={HandleSearch}
                             value={SearchArea}
@@ -161,42 +184,45 @@ export default function Header() {
                                 style={{ cursor: 'pointer' }}
                                 className='search_icon' />
                         </p>
-                        {isFocused &&
-                            <div ref={SearchRef} className='search_info'>
-                                {
-                                    SearchResultLatest.length > 0 && (
-                                        <ul>
-                                            {SearchResultLatest.map((item) => {
-                                                return <li>
-                                                    <Link
-                                                        onClick={handleInputBlur}
-                                                        key={item.id}
-                                                        to={`/product/latest/${item.id}`}>
-                                                        <img src={item.image}></img>
-                                                        <p className='handle_result_name'>{item.name}</p>
-                                                    </Link>
-                                                </li>
-                                            })}
-                                        </ul>
-                                    )}
-                                {
-                                    SearchResult.length > 0 && (
-                                        <ul>
-                                            {SearchResult.map((item) => {
-                                                return <li >
-                                                    <Link
-                                                        onClick={handleInputBlur}
-                                                        key={item.id1}
-                                                        to={`/product/${item.id1}`}>
-                                                        <img src={item.image}></img>
-                                                        <p className='handle_result_name'>{item.name}</p>
-                                                    </Link>
-                                                </li>
-                                            })}
-                                        </ul>
-                                    )}
-                            </div>
-                        }
+
+                        <div ref={SearchRef} className='search_info'>
+                            {
+                                SearchResultLatest.length > 0 && (
+                                    <ul>
+                                        {SearchResultLatest.map((item) => {
+                                            return <li>
+                                                <Link
+
+                                                    onClick={() => window.location.href = `/product/latest/${item.id}`}
+                                                    key={item.id}
+
+                                                >
+                                                    <img src={item.image}></img>
+                                                    <p className='handle_result_name'>{item.name}</p>
+                                                </Link>
+                                            </li>
+                                        })}
+                                    </ul>
+                                )}
+                            {
+                                SearchResult.length > 0 && (
+                                    <ul>
+                                        {SearchResult.map((item) => {
+                                            return <li >
+                                                <Link
+                                                    onClick={() => window.location.href = `/product/${item.id1}`}
+                                                    key={item.id1}
+
+                                                >
+                                                    <img src={item.image}></img>
+                                                    <p className='handle_result_name'>{item.name}</p>
+                                                </Link>
+                                            </li>
+                                        })}
+                                    </ul>
+                                )}
+                        </div>
+
                     </div>
 
                     <div className='handle_contact'>
@@ -211,10 +237,28 @@ export default function Header() {
                         }
                         <div className='handle_user'>
                             {!nav &&
-                                <Link style={{ color: '#000' }} onClick={() => hidesidebar()} to={`/user`}><HiOutlineUser className='user_icon' style={{ cursor: 'pointer', fontSize: '1.8rem', marginRight: '10px' }} /></Link>
+                                <Link
+                                    style={{ color: '#000' }}
+                                    onClick={handleSignIn}
+
+                                ><HiOutlineUser
+                                        className='user_icon'
+                                        style={
+                                            {
+                                                cursor: 'pointer',
+                                                fontSize: '1.8rem',
+                                                marginRight: '10px'
+                                            }
+                                        }
+                                    /></Link>
                             }
                             {!nav &&
-                                <Link style={{ color: '#000' }} className='handle_cartlink' onClick={() => showsidebar()} to={`/cart`}><AiOutlineShoppingCart className='user_icon' style={{ cursor: 'pointer', fontSize: '1.8rem' }} />
+                                <Link
+                                    style={{ color: '#000' }}
+                                    className='handle_cartlink'
+                                    onClick={handleCart}
+
+                                ><AiOutlineShoppingCart className='user_icon' style={{ cursor: 'pointer', fontSize: '1.8rem' }} />
                                     <div className='handle_divcartlenght'>
                                         <span className='handle_cartlenght'>{cart.length + cartLatestProduct.length}</span>
                                     </div>
@@ -242,22 +286,41 @@ export default function Header() {
                         {!nav &&
                             <div className='handle_respondmenu' >
                                 <li style={{ margin: '0px 5px' }} className='menu_li li1'>
-                                    <Link onClick={() => showsidebar()} to={`/home`}>HOME</Link>
+                                    <Link
+                                        onClick={handleHome}
+
+                                    >HOME</Link>
                                 </li>
                                 <li className='menu_li li2'>
-                                    <Link onClick={() => showsidebar()} to={`/contact`}>CONTACT</Link>
+                                    <Link
+                                        onClick={handleContact}
+
+
+                                    >CONTACT</Link>
                                 </li>
                                 <li style={{ margin: '0px 5px' }} className='menu_li li3'>
-                                    <Link onClick={() => showsidebar()} to={`/delivery`}>DELIVERY</Link>
+                                    <Link
+                                        onClick={handleDelivery}
+
+                                    >DELIVERY</Link>
                                 </li>
                                 <li className='menu_li li4'>
-                                    <Link onClick={() => showsidebar()} to={`/aboutus`}>ABOUT US</Link>
+                                    <Link
+                                        onClick={handleAboutUs}
+
+                                    >ABOUT US</Link>
                                 </li>
                                 <li style={{ margin: '0px 5px' }} className='menu_li li5'>
-                                    <Link onClick={() => showsidebar()} to={`/sitemap`}>SITE MAP</Link>
+                                    <Link
+                                        onClick={handleSiteMap}
+
+                                    >SITE MAP</Link>
                                 </li>
                                 <li className='menu_li li6'>
-                                    <Link onClick={() => showsidebar()} to={`/blogs`}>BLOGS</Link>
+                                    <Link
+                                        onClick={handleBlogs}
+
+                                    >BLOGS</Link>
                                 </li>
                             </div>
                         }
@@ -330,7 +393,10 @@ export default function Header() {
                                                     {product && product.map((item, index) => (
                                                         <div index={index} className="handle_cardbestselling">
                                                             <div className="img">
-                                                                <Link to={`/product/${item.id1}`}>
+                                                                <Link
+                                                                    // to={`/product/${item.id1}`}
+                                                                    onClick={() => window.location.href = `/product/${item.id1}`}
+                                                                >
                                                                     <img src={item.image}>
                                                                     </img>
                                                                 </Link>

@@ -29,7 +29,9 @@ export default function LapTopCart() {
             window.removeEventListener('resize', handle_resize)
         }
     }, [])
-
+    const handleProceed = () => {
+        window.location.href = `/cart/user-cart`
+    }
     return (
         <div className="cart">
             <h1>Cart</h1>
@@ -115,7 +117,10 @@ export default function LapTopCart() {
                         </div>
                     </div>
                     <div className="handle_process">
-                        <button><Link to={`/cart/user-cart`}>PROCEED TO CHECKOUT</Link></button>
+                        <button><Link
+                            // to={`/cart/user-cart`}
+                            onClick={handleProceed}
+                        >PROCEED TO CHECKOUT</Link></button>
                     </div>
                 </div>
             </div>
