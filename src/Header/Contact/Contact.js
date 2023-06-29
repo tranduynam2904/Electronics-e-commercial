@@ -2,6 +2,7 @@ import './Contact.css'
 import React, { useContext, useRef } from 'react';
 import emailjs from '@emailjs/browser';
 import { AppContext } from '../../AppContext';
+import GoogleMap from '../../GoogleMap/GoogleMap';
 export default function Contact() {
     const {
         SubmitContact,
@@ -71,6 +72,7 @@ export default function Contact() {
                 </div>
 
             </form>
+            <GoogleMap />
         </div>
     )
 }
