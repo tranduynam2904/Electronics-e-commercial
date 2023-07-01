@@ -184,16 +184,7 @@ export const AppProvider = ({ children }) => {
         productList += `(Name: ${item.name}\n - Price: $${item.originalprice}\n - Quantity: ${item.qty}\n - Total: $${item.price}), \n`;
     }
 
-    // const [sortOrder, setSortOrder] = useState([]);
-    // const handleSortOrderChange = (event) => {
-    //     setSortOrder(event.target.value);
-    //     const sortedProducts = sortOrder === 'asc' ?
-    //         [...latestProduct].sort((a, b) => b.price - a.price) : sortOrder === 'desc' ?
-    //             [...latestProduct].sort((a, b) => a.price - b.price) : sortOrder === 'AZ' ?
-    //                 [...latestProduct].sort((a, b) => b.name.localeCompare(a.name)) : sortOrder === 'ZA' ?
-    //                     [...latestProduct].sort((a, b) => a.name.localeCompare(b.name)) : latestProduct;
-    //     setLatestProduct(sortedProducts);
-    // };
+
 
     const [sortOrder, setSortOrder] = useState([]);
     const handleSortOrderChange = (e) => {
