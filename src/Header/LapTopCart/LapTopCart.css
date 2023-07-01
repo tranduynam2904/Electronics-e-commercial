@@ -246,4 +246,7 @@
     .handle_totalprice {
         width: 100%;
     }
+    .cart h1{
+   margin: 20px 0px;
+    }
 }

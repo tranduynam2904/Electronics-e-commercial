@@ -10,7 +10,7 @@ import { BsPinterest } from 'react-icons/bs'
 export default function ProductDetailProductLatest() {
     const {
         latestProduct,
-        addCart,
+        addCartLatestProduct,
     }
         = useContext(AppContext)
     const { id } = useParams()
@@ -58,7 +58,7 @@ export default function ProductDetailProductLatest() {
                             </div>
                         </div>
                         <div className="button_addtocart">
-                            <button onClick={() => addCart(detail.id1)}>ADD TO CART</button>
+                            <button onClick={() => addCartLatestProduct(detail.id)}>ADD TO CART</button>
                         </div>
                         <div className='handle_media'>
                             <Link className='media facebook'>

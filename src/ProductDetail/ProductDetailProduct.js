@@ -17,7 +17,7 @@ export default function ProductDetailProduct() {
     const detail = product.find((item) => item.id1 === id1)
     return (
         <div className="handle_detail">
-            <h1 style={{marginBottom:'25px'}}>Product Detail</h1>
+            <h1 style={{ marginBottom: '25px' }}>Product Detail</h1>
             <div className="product_detail">
                 <div className='handle_img'>
                     <img src={detail.image}></img>
@@ -57,9 +57,11 @@ export default function ProductDetailProduct() {
                                 </div> */}
                             </div>
                         </div>
-                        <div className="button_addtocart">
-                            <button onClick={() => addCart(detail.id1)}>ADD TO CART</button>
-                        </div>
+                      
+                            <div className="button_addtocart">
+                                <button onClick={() => addCart(detail.id1)}>ADD TO CART</button>
+                            </div>
+                    
                         <div className='handle_media'>
                             <Link className='media facebook'>
                                 <BiLogoFacebook />

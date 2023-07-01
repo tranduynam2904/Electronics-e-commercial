@@ -55,6 +55,7 @@ export default function Contact() {
             }
         }
     }, [email]);
+    //Email Validate
     const handleSubmit = () => {
         swal("Thank You For Your Information!", "We will contact to you soon!", "success")
     }
@@ -68,8 +69,6 @@ export default function Contact() {
                     <label for="input-name">Your Name</label>
                     <div className='handle_input'>
                         <input
-                            // value={contactName}
-                            // onChange={onChangeContactName}
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                             type="text"
