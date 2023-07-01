@@ -39,8 +39,6 @@ import "aos/dist/aos.css";
 import EmailCart from './LapTopCart/EmailCart/EmailCart'
 import ProductDetailProduct from '../ProductDetail/ProductDetailProduct'
 import ProductDetailProductLatest from '../ProductDetail/ProductDetailLatest'
-
-
 export default function Header() {
     const {
         show,
@@ -160,10 +158,28 @@ export default function Header() {
         window.location.href = `/cart`
         showsidebar()
     }
+    const [menuHeight, setMenuHeight] = useState('100px');
+    const menuRef = React.createRef();
+    useEffect(() => {
+        const handleScroll = () => {
+            if (menuRef.current && window.pageYOffset >= (menuRef.current.offsetTop + window.innerHeight / 4)) {
+                setMenuHeight('120px');
+            } 
+            else {
+                setMenuHeight('100px');
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [menuRef]);
     return (
         <>
             <div className='header'>
-                <div className='handle_logo'>
+                <div ref={menuRef} style={{ height: menuHeight }} className='handle_logo'>
                     {nav &&
                         <buton onClick={handle_toggle} className='handle_toggle'><img src={toggle}></img></buton>
                     }
@@ -339,7 +355,6 @@ export default function Header() {
                                     data-aos="fade-right"
                                     data-aos-duration="500"
                                     data-aos-easing="ease-in-sine"
-
                                     style={{ marginTop: '30px' }} className='handle_clientsays'>
                                     <p className='title' style={{ width: '250px' }}>CLIENT SAYS</p>
                                     <SliderClient />

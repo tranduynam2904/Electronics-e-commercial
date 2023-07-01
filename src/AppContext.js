@@ -482,6 +482,7 @@ export const AppProvider = ({ children }) => {
         setUser(true)
     }
     const [contactName, setContactName] = useState("")
+    const [nameError, setNameError] = useState('');
     const [contactEmail, setContactEmail] = useState("")
     const onChangeContactEmail = (e) => {
         setContactEmail(e.target.value)
@@ -489,6 +490,7 @@ export const AppProvider = ({ children }) => {
     const onChangeContactName = (e) => {
         setContactName(e.target.value)
     }
+    
     const validateContactUserName = (username) => {
         if (!username) {
             return alert('Username is required');
@@ -502,11 +504,27 @@ export const AppProvider = ({ children }) => {
         if (!regex.test(username)) {
             return alert('Username can only contain letters, numbers, and special characters . _ -');
         }
-        else {
-            return '';
-        }
+        // else {
+        //     return '';
+        // }
     };
+    const validateProceedUserName = (username) => {
+        if (!username) {
+            return alert('Username is required');
+        }
 
+        if (username.length < 3) {
+            return alert('Username must be at least 3 characters long');
+        }
+
+        const regex = /^[a-zA-Z0-9._-]+$/;
+        if (!regex.test(username)) {
+            return alert('Username can only contain letters, numbers, and special characters . _ -');
+        }
+        // else {
+        //     return '';
+        // }
+    };
     const validateContactEmail = (email) => {
         if (!email) {
             return alert('Email is required');
@@ -517,17 +535,54 @@ export const AppProvider = ({ children }) => {
             return alert('Invalid email address');
         }
         else {
-            swal("Thank You For Your Infomation!", "We will contact to you soon!", "success")
-            return '';
+            swal("Thank You For Your Information!", "We will contact to you soon!", "success")
+            // return '';
         }
     };
 
+    const validateProceedEmail = (email) => {
+        if (!email) {
+            return alert('Email is required');
+        }
+
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!regex.test(email)) {
+            return alert('Invalid email address');
+        }
+        else {
+            swal("Thank You For Your Purchase!", "We will ship to your address soon!", "success");
+            // return '';
+        }
+    };
+    const [phone, setPhone] = useState("")
+    const validateProceedPhone = (phone) => {
+        const regex = /^\d{10}$/;
+        if (!regex.test(phone)) {
+            return alert('Invalid phone number');
+        }
+        // else {
+        //     return '';
+        // }
+    }
+    const onChangeProceedPhone = (e) => {
+        setPhone(e.target.value)
+    }
     const SubmitContact = () => {
         setContactEmail(validateContactEmail)
         setContactName(validateContactUserName)
     }
+    const [proceedName, setProceedName] = useState("")
+    const [proceedEmail, setProceedEmail] = useState("")
+    const onChangeProceedEmail = (e) => {
+        setProceedEmail(e.target.value)
+    }
+    const onChangeProceedName = (e) => {
+        setProceedName(e.target.value)
+    }
     const SubmitProcess = () => {
-        swal("Thank You For Your Purchase!", "We will ship to your address soon!", "success");
+        setProceedEmail(validateProceedEmail)
+        setProceedName(validateProceedUserName)
+        setPhone(validateProceedPhone)
     }
     const [SearchArea, setSearchArea] = useState('')
     const [SearchResultLatest, setSearchResultLatest] = useState([])
@@ -607,6 +662,12 @@ export const AppProvider = ({ children }) => {
             SearchArea,
             SearchResultLatest,
             SearchResult,
+            proceedName,
+            proceedEmail,
+            phone,
+            onChangeProceedEmail,
+            onChangeProceedName,
+            onChangeProceedPhone,
         }
         }>
             {children}

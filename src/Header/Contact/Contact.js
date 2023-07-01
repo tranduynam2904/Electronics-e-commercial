@@ -1,8 +1,8 @@
 import './Contact.css'
-import React, { useContext, useRef } from 'react';
+import React, { useContext, useRef, useState, useEffect } from 'react';
 import emailjs from '@emailjs/browser';
 import { AppContext } from '../../AppContext';
-import GoogleMap from '../../GoogleMap/GoogleMap';
+import swal from 'sweetalert';
 export default function Contact() {
     const {
         SubmitContact,
@@ -15,7 +15,7 @@ export default function Contact() {
     const form = useRef()
     const sendEmail = (e) => {
         e.preventDefault();
-        emailjs.sendForm('service_33ptgom', 'template_j70exf7', form.current, 'sobri6eby9CjRPEns')
+        emailjs.sendForm('service_33ptgom', 'template_j70exf7', form.current, 'OsHMSiH17MZW0cXJ-')
             .then((result) => {
                 console.log(result.text);
             }, (error) => {
@@ -23,6 +23,41 @@ export default function Contact() {
             });
         e.target.reset()
     };
+    const [name, setName] = useState('');
+    const [nameError, setNameError] = useState('');
+
+    useEffect(() => {
+        if (name) {
+            const regex = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
+            if (!regex.test(name)) {
+                setNameError('Invalid name');
+            }
+            else if (name.length < 3) {
+                setNameError('User Name Must Have At Least 3 Letter');
+            }
+            else {
+                setNameError('');
+            }
+        }
+    }, [name]);
+    //Name Validate
+    const [email, setEmail] = useState('');
+    const [emailError, setEmailError] = useState('');
+
+    useEffect(() => {
+        if (email) {
+            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!regex.test(email)) {
+                setEmailError('Invalid email address');
+            }
+            else {
+                setEmailError('');
+            }
+        }
+    }, [email]);
+    const handleSubmit = () => {
+        swal("Thank You For Your Information!", "We will contact to you soon!", "success")
+    }
     return (
         <div className="contact">
             <h1>
@@ -33,37 +68,41 @@ export default function Contact() {
                     <label for="input-name">Your Name</label>
                     <div className='handle_input'>
                         <input
-                            value={contactName}
-                            onChange={onChangeContactName}
+                            // value={contactName}
+                            // onChange={onChangeContactName}
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
                             type="text"
-                            name='user_name'
+                            name='contact_name'
                             placeholder="Your Name"
                             id="input-name">
                         </input>
+                        {nameError && <div style={{color:'red'}} className="error">{nameError}</div>}
                     </div>
                 </div>
                 <div className='handle_form'>
                     <label for="input-email">Email</label>
                     <div className='handle_input'>
                         <input
-                            value={contactEmail}
-                            onChange={onChangeContactEmail}
+                            value={email}
+                            onChange={(e)=>setEmail(e.target.value)}
                             type="email"
-                            name='user_email'
+                            name='contact_email'
                             placeholder="Your Email"
                             id="input-email">
                         </input>
+                        {emailError && <div style={{color:'red'}} className="error">{emailError}</div>}
                     </div>
                 </div>
                 <div className='handle_form'>
                     <label for="input-enquiry">Enquiry</label>
                     <div className='handle_input'>
-                        <textarea name='message' style={{ outline: 'none' }}></textarea>
+                        <textarea name='contact_message' style={{ outline: 'none' }}></textarea>
                     </div>
                 </div>
                 <div className='handle_submit'>
                     <button
-                        onClick={SubmitContact}
+                        onClick={() => handleSubmit()}
                         type='submit'
                     >Submit</button>
                     <div className='handle_red'>
@@ -72,7 +111,6 @@ export default function Contact() {
                 </div>
 
             </form>
-            <GoogleMap />
         </div>
     )
 }
