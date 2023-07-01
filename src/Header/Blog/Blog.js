@@ -36,7 +36,7 @@ export default function Blogs() {
                 <div className="col">
                     <div className="card">
                         <img
-                            src='https://ei5t3fq5d7s.exactdn.com/wp-content/uploads/2023/04/Acer_Nitro5_Lifestyle_01.tif-custom-900x600.jpg?strip=all&lossy=1&webp=80&avif=80&ssl=1'></img>
+                            src='https://mezha.media/wp-content/uploads/2023/04/Acer_Nitro5_Lifestyle_01.tif-custom-900x600.jpg'></img>
                         <b>04 June 2023</b>
                         <div className='link_blog'>
                             <Link to={`/blogs/blog2`}>Acer introduced updated of
