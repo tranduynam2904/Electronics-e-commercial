@@ -357,7 +357,7 @@ export const AppProvider = ({ children }) => {
     const removeItemLatestProduct = (id) => {
         const kq = cartLatestProduct.filter(item => item.id != id)
         setCartLatestProduct(kq)
-        localStorage.setItem('cart_list', JSON.stringify(kq));
+        localStorage.setItem('cart_list_latest_product', JSON.stringify(kq));
     }
     const hidesidebar = () => {
         setShow(false)
